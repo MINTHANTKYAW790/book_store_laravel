@@ -26,13 +26,13 @@
 <body>
     <nav class="row row-cols-2 row-cols-xs-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-2 py-3 navbar">
         <a href="../pages/index.php" class="row row-cols-2" style="text-decoration:none">
-            <img src="../img/wordwise.png" alt="logo" class="logoImage p-0" style="width:44px; height:30px">
+            <img src="{{asset('images/wordwise.png')}}" alt="logo" class="logoImage p-0" style="width:22px; height:30px">
             <h3 class="text-orange p-0 m-0 ">WORD WISE</h3>
         </a>
 
         <form class="d-flex" action="../pages/searchResult.php" method="GET">
             <input type="text" name="query" class="form-control search" placeholder="Search everything you want here">
-            <input type="submit" value="Search" class=" btn btn-primary text-white search btn-sm">
+            <input type="submit" value="Search" class=" btn btn-orange text-white search btn-sm">
         </form>
     </nav>
 
@@ -53,17 +53,17 @@
         }
         ?>
 
-        <a href="../pages/index.php" class="navMenu navIndex py-2">
+        <a href="{{url('/')}}" class="navMenu navIndex py-2">
             <h5>HOME</h5>
         </a>
-        <a href="../pages/books.php" class="navMenu navBooks py-2">
+        <a href="{{url('guest/books/')}}" class="navMenu navBooks py-2">
             <h5>BOOKS</h5>
         </a>
-        <a href="../pages/authors.php" class="navMenu navAuthors py-2">
+        <a href="{{url('guest/authors/')}}" class="navMenu navAuthors py-2">
             <h5>AUTHORS</h5>
         </a>
-        <a href="../pages/categories.php" class="navMenu navCategories py-2">
-            <h5>CATEGORIES</h5>
+        <a href="{{url('guest/genres/')}}" class="navMenu navCategories py-2">
+            <h5>GENRES</h5>
         </a>
         <?php
         if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
@@ -119,7 +119,7 @@
 
         </div>
         <div class="lowerFooter ">
-            <p class="py-4 copyrightText">&copy; <a href="../pages/index.php" class="orangeText">Word Wise</a> Created with <span style="color:red;font-size:x-large">&hearts;</span> by <a href="https://portfolio-beta-roan-96.vercel.app" target="_blank" class="orangeText">Min Thant Kyaw</a></p>
+            <p class="py-4 copyrightText">&copy; <a href="{{url('/')}}" class="orangeText">Word Wise</a> Created with <span style="color:red;font-size:x-large">&hearts;</span> by <a href="https://portfolio-beta-roan-96.vercel.app" target="_blank" class="orangeText">Min Thant Kyaw</a></p>
         </div>
     </footer>
 </body>

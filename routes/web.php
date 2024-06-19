@@ -35,3 +35,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
+Route::get('/guest/detail/{id}', [App\Http\Controllers\WelcomeController::class, 'detail'])->name('detail');
+Route::get('/guest/books', [App\Http\Controllers\WelcomeController::class, 'books'])->name('books');
+Route::get('/guest/authors', [App\Http\Controllers\WelcomeController::class, 'authors'])->name('authors');
