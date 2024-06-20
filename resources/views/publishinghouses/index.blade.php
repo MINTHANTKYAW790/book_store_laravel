@@ -14,7 +14,7 @@
 </head>
 
 <body> -->
-@extends('../home')
+@extends('home')
 
 
 @section('authors')
@@ -46,7 +46,7 @@
                 </div>
 
             </div>
-            <table class="table table-bordered">
+            <table class="table table-bordered table-hover">
                 <tr>
                     <th>No</th>
                     <th>Name</th>

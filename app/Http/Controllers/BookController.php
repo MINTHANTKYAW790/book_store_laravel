@@ -19,7 +19,7 @@ class BookController extends Controller
 
     public function index()
     {
-        $books = Books::latest()->with(['author', 'genre', 'publishingHouse','user'])->paginate(6);
+        $books = Books::latest()->with(['author', 'genre', 'publishingHouse', 'user'])->paginate(6);
         // $books = Books::latest()->paginate(5);
         return view('books.index', compact('books'));
     }
@@ -47,17 +47,22 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['name' => 'required']);
-        $request->validate(['code_number' => 'required']);
-        $request->validate(['price' => 'required']);
-        $request->validate(['publishing_date' => 'required']);
-        $request->validate(['description' => 'required']);
-        $request->validate(['image' => 'required']);
-        $request->validate(['save_pdf' => 'required']);
-        $request->validate(['author_id' => 'required']);
-        $request->validate(['genre_id' => 'required']);
-        $request->validate(['publishing_house_id' => 'required']);
-        $request->validate(['edition' => 'required']);
+        $request->validate([
+            'name' => 'required',
+            'code_number' => 'required',
+            'price' => 'required',
+            'publishing_date' => 'required',
+            'description' => 'required',
+            'image' => 'required',
+            'save_pdf' => 'required',
+            'author_id' => 'required',
+            'genre_id' => 'required',
+            'publishing_house_id' => 'required',
+            'edition' => 'required',
+
+        ]);
+
+
 
         $imageFileName = auth()->id() . '_' . time() . '.' . $request->file('image')->extension();
         $request->file('image')->move(public_path('images'), $imageFileName);
@@ -122,17 +127,20 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate(['name' => 'required']);
-        $request->validate(['code_number' => 'required']);
-        $request->validate(['price' => 'required']);
-        $request->validate(['publishing_date' => 'required']);
-        $request->validate(['description' => 'required']);
-        $request->validate(['image' => 'required']);
-        $request->validate(['save_pdf' => 'required']);
-        $request->validate(['author_id' => 'required']);
-        $request->validate(['genre_id' => 'required']);
-        $request->validate(['publishing_house_id' => 'required']);
-        $request->validate(['edition' => 'required']);
+        $request->validate([
+            'name' => 'required',
+            'code_number' => 'required',
+            'price' => 'required',
+            'publishing_date' => 'required',
+            'description' => 'required',
+            'image' => 'required',
+            'save_pdf' => 'required',
+            'author_id' => 'required',
+            'genre_id' => 'required',
+            'publishing_house_id' => 'required',
+            'edition' => 'required',
+
+        ]);
 
         $imageFileName = auth()->id() . '_' . time() . '.' . $request->file('image')->extension();
         $request->file('image')->move(public_path('images'), $imageFileName);

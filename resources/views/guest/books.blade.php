@@ -5,9 +5,6 @@
 <div class="gridContainer row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5">
 
     @foreach ($books as $book)
-
-
-
     <div class="imageBox ">
         <a href="{{url('guest/detail/'.$book->id)}}">
             <img class="imageImageBox" src="{{asset('images/' . $book -> image)}}" alt="image" height="309px" width="224px" />
@@ -20,6 +17,6 @@
     </div>
     @endforeach
 </div>
-
+{{ $books->links() }}
 
 @endsection

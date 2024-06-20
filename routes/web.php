@@ -25,11 +25,11 @@ use App\Http\Controllers\PersonController;
 // });
 
 Route::middleware('auth')->group(function () {
-    Route::resource('/authors', AuthorController::class);
-    Route::resource('/genres', GenreController::class);
-    Route::resource('/publishinghouses', PublishingHouseController::class);
-    Route::resource('/books', BookController::class);
-    Route::resource('/person', PersonController::class);
+    Route::resource('/authors', AuthorController::class)->name('*', 'admin_authors');
+    Route::resource('/genres', GenreController::class)->name('*', 'admin_genres');
+    Route::resource('/publishinghouses', PublishingHouseController::class)->name('*', 'admin_publishinghouses');
+    Route::resource('/books', BookController::class)->name('*', 'admin_books');
+    Route::resource('/person', PersonController::class)->name('*', 'admin_person');
 });
 Auth::routes();
 
@@ -38,8 +38,9 @@ Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name(
 Route::get('/guest/detail/{id}', [App\Http\Controllers\WelcomeController::class, 'detail'])->name('detail');
 Route::get('/guest/authorbooks/{id}', [App\Http\Controllers\WelcomeController::class, 'authorbooks'])->name('authorbooks');
 Route::get('/guest/genrebooks/{id}', [App\Http\Controllers\WelcomeController::class, 'genrebooks'])->name('genrebooks');
-Route::get('/guest/pbhbooks/{id}', [App\Http\Controllers\WelcomeController::class, 'detaipbhbooksl'])->name('pbhbooks');
-Route::get('/guest/books', [App\Http\Controllers\WelcomeController::class, 'books'])->name('books');
-Route::get('/guest/authors', [App\Http\Controllers\WelcomeController::class, 'authors'])->name('authors');
-Route::get('/guest/genres', [App\Http\Controllers\WelcomeController::class, 'genres'])->name('genres');
-Route::get('/guest/publishinghouses', [App\Http\Controllers\WelcomeController::class, 'publishinghouses'])->name('publishinghouses');
+Route::get('/guest/pbhbooks/{id}', [App\Http\Controllers\WelcomeController::class, 'pbhbooks'])->name('pbhbooks');
+Route::get('/guest/books', [App\Http\Controllers\WelcomeController::class, 'books'])->name('ubooks');
+Route::get('/guest/authors', [App\Http\Controllers\WelcomeController::class, 'authors'])->name('uauthors');
+Route::get('/guest/genres', [App\Http\Controllers\WelcomeController::class, 'genres'])->name('ugenres');
+Route::get('/guest/publishinghouses', [App\Http\Controllers\WelcomeController::class, 'publishinghouses'])->name('upublishinghouses');
+Route::get('/search', [App\Http\Controllers\WelcomeController::class, 'search'])->name('search');

@@ -1,28 +1,15 @@
 @extends('welcome')
 @section('guestContent')
 
-
-
-
-<!-- while ($tailRow = $tailResult->fetch_assoc()) {
-      if ($tailRow["author_image"] == "") {
-        $tailRow["author_image"] = "user.jpg";
-      }
-      echo " -->
 <div class='detailContainer mySlides'>
   <div class='insideDetailTextContainer row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-2'>
-    <div class='imageContainer' style='width: 30%;'>
-
-    </div>
     <div style='width: 60%;' class='detailTextContainer'>
-      <h5 class='detailText author'>{{$authors->author_name}}</h5>
-
-
+      <h5 class='detailText author'>{{$genres->genre_name}}</h5>
     </div>
   </div>
 </div>
 
-<h4 class='booksText'>BOOKS LIST / {{$authors->author_name}}</h4>";
+<h4 class='booksText'>GENRES / {{$genres->genre_name}}</h4>";
 
 
 

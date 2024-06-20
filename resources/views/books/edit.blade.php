@@ -20,7 +20,7 @@
     @method("PUT")
     <div class="card ">
         <div class="cardbody mt-3 ml-3">
-            {{ var_dump($errors->all()) }}
+            <!-- {{ var_dump($errors->all()) }} -->
             <h3>Edit Books</h3>
             <div class="row mb-3">
                 <label for="name" class="col-md-2 col-form-label offset-md-2">Book Name</label>

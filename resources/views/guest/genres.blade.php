@@ -8,7 +8,7 @@
     <div class="gridContainer row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5">
 
         @foreach ($genres as $genre)
-        <a href='{{url('guest/genreBooks/'.$genre->id)}}' class='card namecard' style='width: 21.5rem; height:4rem;'>
+        <a href='{{url('guest/genrebooks/'.$genre->id)}}' class='card namecard' style='width: 21.5rem; height:4rem;'>
             <div class='card-body'>
                 <h5 style='hover{color:white}' class='card-title'>{{$genre->genre_name}}</h5>
             </div>
@@ -18,6 +18,6 @@
     </div>
 
 </div>
+{{ $genres->links() }}
 
-</div>
 @endsection

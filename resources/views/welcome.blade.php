@@ -20,7 +20,12 @@
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
-
+    <style>
+        .active-nav {
+            color: #f07c29 !important;
+            background-color: #f07c29 !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -30,8 +35,8 @@
             <h3 class="text-orange p-0 m-0 ">WORD WISE</h3>
         </a>
 
-        <form class="d-flex" action="../pages/searchResult.php" method="GET">
-            <input type="text" name="query" class="form-control search" placeholder="Search everything you want here">
+        <form class="d-flex" action="{{ route('search') }}" method="GET">
+            <input type="text" name="query" class="form-control search" placeholder="Search for books, authors, genres, or publishing houses">
             <input type="submit" value="Search" class=" btn btn-orange text-white search btn-sm">
         </form>
     </nav>
@@ -40,23 +45,22 @@
 
 
     <div class="pagination paginationContainer ">
-
-
         <div id='pagination' class='pagination row row-cols-1 row-cols-xs-1 row-cols-sm-1 row-cols-md-5 row-cols-lg-5 text-center'>
 
-            <a href="{{url('/')}}" class="navMenu navIndex py-2">
+            <a href="{{url('/')}}" class="navMenu  py-2 {{ request()->routeIs('welcome') ? 'active-nav' : '' }}">
                 <h5>HOME</h5>
             </a>
-            <a href="{{url('guest/books/')}}" class="navMenu navBooks py-2">
+            <a href="{{url('guest/books/')}}" class="navMenu  py-2 {{ request()->routeIs('ubooks') ? 'active-nav' : '' }}">
                 <h5>BOOKS</h5>
             </a>
-            <a href="{{url('guest/authors/')}}" class="navMenu navAuthors py-2">
+            <a href="{{url('guest/authors/')}}" class="navMenu  py-2 {{ request()->routeIs('uauthors') ? 'active-nav' : '' }}">
                 <h5>AUTHORS</h5>
             </a>
-            <a href="{{url('guest/genres/')}}" class="navMenu navCategories py-2">
+
+            <a href="{{url('guest/genres/')}}" class="navMenu  py-2 {{ request()->routeIs('ugenres') ? 'active-nav' : '' }}">
                 <h5>GENRES</h5>
             </a>
-            <a href="{{url('guest/publishinghouses/')}}" class="navMenu navCategories py-2">
+            <a href="{{url('guest/publishinghouses/')}}" class="navMenu  py-2 {{ request()->routeIs('upublishinghouses') ? 'active-nav' : '' }}">
                 <h5>PUBLISHING HOUSES</h5>
             </a>
 

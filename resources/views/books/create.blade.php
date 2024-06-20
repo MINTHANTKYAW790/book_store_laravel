@@ -38,11 +38,9 @@
                 <label for="code_number" class="col-md-2 col-form-label offset-md-2">Code Number</label>
 
                 <div class="col-md-6">
-                    <input id="code_number" type="number" class="form-control @error('code_number') is-invalid @enderror" name="code_number" value="{{ old('code_number') }}" required autocomplete="code_number" autofocus>
+                    <input type="text" name="code_number" class="form-control @error('code_number') is-invalid @enderror" id="code_number" placeholder="Enter new book code number" value="{{ old('code_number') }}">
                     @error('code_number')
-                    <div class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </div>
+                    <div class="invalid-feedback">{{$message}}</div>
                     @enderror
                 </div>
             </div>
@@ -52,10 +50,10 @@
                 <label for="price" class="col-md-2 col-form-label offset-md-2">Price</label>
 
                 <div class="col-md-6">
-                    <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" required autocomplete="price" autofocus>
+                    <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}">
                     @error('price')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                    <span class="invalid-feedback">
+                        {{ $message }}
                     </span>
                     @enderror
                 </div>
@@ -66,10 +64,10 @@
                 <label for="publishing_date" class="col-md-2 col-form-label offset-md-2">Publishing Date</label>
 
                 <div class="col-md-6">
-                    <input id="publishing_date" type="date" class="form-control @error('publishing_date') is-invalid @enderror" name="publishing_date" value="{{ old('publishing_date') }}" required autocomplete="publishing_date" autofocus>
+                    <input id="publishing_date" type="date" class="form-control @error('publishing_date') is-invalid @enderror" name="publishing_date" value="{{ old('publishing_date') }}">
                     @error('publishing_date')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                    <span class="invalid-feedback">
+                        {{ $message }}
                     </span>
                     @enderror
                 </div>
@@ -80,10 +78,10 @@
                 <label for="description" class="col-md-2 col-form-label offset-md-2">Description</label>
 
                 <div class="col-md-6">
-                    <input id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" required autocomplete="description" autofocus>
+                    <input id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}">
                     @error('description')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                    <span class="invalid-feedback">
+                        {{ $message }}
                     </span>
                     @enderror
                 </div>
@@ -102,8 +100,8 @@
                         @endforeach
                     </select>
                     @error('author_id')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                    <span class="invalid-feedback">
+                        {{ $message }}
                     </span>
                     @enderror
                 </div>
@@ -115,15 +113,15 @@
                 <label for="genre_id" class="col-md-2 col-form-label offset-md-2">Genre </label>
 
                 <div class="col-md-6">
-                    <select name="genre_id" id="genre_id" class="form-control @error('genre_id') is-invalid @enderror">
+                    <select name="genre_id" id="genre_id" class="form-control @error('genre_id') is-invalid @enderror" required>
                         <option>Choose Genre ...</option>
                         @foreach($genres as $genre)
-                        <option value="{{ $genre->id }}" {{ old('genre_id') == $genre->id ? 'selected' : '' }}>{{ $genre->genre_name }}</option>
+                        <option value="{{ $genre->id }}" {{ old('genre_id') == $genre->id ? 'selected' : ''  }} name="genre_id" id="genre_id" class="form-control @error('genre_id') is-invalid @enderror" required>{{ $genre->genre_name }}</option>
                         @endforeach
                     </select>
                     @error('genre_id')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                    <span class="invalid-feedback">
+                        {{ $message }}
                     </span>
                     @enderror
                 </div>
@@ -135,15 +133,15 @@
                 <label for="publishing_house_id" class="col-md-2 col-form-label offset-md-2">Publishing House Name</label>
 
                 <div class="col-md-6">
-                    <select name="publishing_house_id" id="publishing_house_id" class="form-control @error('publishing_house_id') is-invalid @enderror">
+                    <select name="publishing_house_id" id="publishing_house_id"  class="form-control @error('publishing_house_id') is-invalid @enderror" required>
                         <option>Choose Publishing House ...</option>
                         @foreach($publishinghouses as $publishinghouse)
-                        <option value="{{ $publishinghouse->id }}" {{ old('publishing_house_id') == $publishinghouse->id ? 'selected' : '' }}>{{ $publishinghouse->name }}</option>
+                        <option value="{{ $publishinghouse->id }}" {{ old('publishing_house_id') == $publishinghouse->id ? 'selected' : '' }} required>{{ $publishinghouse->name }}</option>
                         @endforeach
                     </select>
                     @error('publishing_house_id')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                    <span class="invalid-feedback">
+                        {{ $message }}
                     </span>
                     @enderror
                 </div>
@@ -154,10 +152,10 @@
                 <label for="image" class="col-md-2 col-form-label offset-md-2">Book Cover</label>
 
                 <div class="col-md-6">
-                    <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" accept="image/*" name="image" value="{{ old('image') }}" required autocomplete="image" autofocus>
+                    <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" accept="image/*" name="image" value="{{ old('image') }}">
                     @error('image')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                    <span class="invalid-feedback">
+                        {{ $message }}
                     </span>
                     @enderror
                 </div>
@@ -168,10 +166,10 @@
                 <label for="save_pdf" class="col-md-2 col-form-label offset-md-2">Pdf File</label>
 
                 <div class="col-md-6">
-                    <input id="save_pdf" type="file" class="form-control @error('save_pdf') is-invalid @enderror" accept="application/pdf" name="save_pdf" value="{{ old('save_pdf') }}" required autocomplete="save_pdf" autofocus>
+                    <input id="save_pdf" type="file" class="form-control @error('save_pdf') is-invalid @enderror" accept="application/pdf" name="save_pdf" value="{{ old('save_pdf') }}">
                     @error('save_pdf')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                    <span class="invalid-feedback">
+                        {{ $message }}
                     </span>
                     @enderror
                 </div>
@@ -183,10 +181,10 @@
                 <label for="edition" class="col-md-2 col-form-label offset-md-2">Edition</label>
 
                 <div class="col-md-6">
-                    <input id="edition" type="number" class="form-control @error('edition') is-invalid @enderror" name="edition" value="{{ old('edition') }}" required autocomplete="edition" autofocus>
+                    <input id="edition" type="number" class="form-control @error('edition') is-invalid @enderror" name="edition" value="{{ old('edition') }}">
                     @error('edition')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                    <span class="invalid-feedback">
+                        {{ $message }}
                     </span>
                     @enderror
                     <button type="submit" class="btn btn-primary col-md-5 mt-2">Create</button>

@@ -28,7 +28,7 @@
 
                 <label for="genre_name" class="col-md-2 col-form-label">Genre Name</label>
                 <div class="col-md-6">
-                    <input type="text" name="genre_name" class="form-control @error('genre_name') is-invalid @enderror" id="genre_name" placeholder="Enter new author name" value="{{$genres->genre_name}}">
+                    <input type="text" name="genre_name" class="form-control @error('genre_name') is-invalid @enderror" id="genre_name" placeholder="Edit genre name" value="{{$genres->genre_name}}">
                     @error('genre_name')
                     <div class="invalid-feedback">{{$message}}</div>
                     @enderror

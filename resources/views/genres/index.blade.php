@@ -15,7 +15,7 @@
 
 <body> -->
 
-@extends('../home')
+@extends('home')
 
 
 @section('authors')

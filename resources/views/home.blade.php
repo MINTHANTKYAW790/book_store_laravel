@@ -16,6 +16,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <style>
+        .active-nav {
+            color: white !important;
+            background-color: rgba(255, 255, 255, .1) !important;
+        }
+    </style>
 </head>
 
 
@@ -140,7 +146,7 @@
                             </ul>
                         </li> -->
                             <li class="nav-item">
-                                <a href="{{url('authors')}}" class="nav-link">
+                                <a href="{{url('authors')}}" class="nav-link {{ request()->routeIs('authors.*') ? 'active-nav' : '' }}">
                                     <i class="nav-icon fa-solid fa-user"></i>
                                     <p>
                                         Authors
@@ -149,8 +155,8 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{url('genres')}}" class="nav-link">
-                                    <i class="nav-icon fa-solid fa-layer-group"></i>
+                                <a href="{{url('genres')}}" class="nav-link {{ request()->routeIs('genres.*') ? 'active-nav' : '' }}">
+                                    <i class="nav-icon fa-solid fa-layer-group "></i>
                                     <p>
                                         Genres
                                         <!-- <span class="right badge badge-danger">New</span> -->
@@ -158,7 +164,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{url('publishinghouses')}}" class="nav-link">
+                                <a href="{{url('publishinghouses')}}" class="nav-link {{ request()->routeIs('publishinghouses.*') ? 'active-nav' : '' }}">
                                     <i class="nav-icon fa-solid fa-house"></i>
                                     <p>
                                         Publishing House
@@ -167,7 +173,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{url('books')}}" class="nav-link">
+                                <a href="{{url('books')}}" class="nav-link {{ request()->routeIs('books.*') ? 'active-nav' : '' }}">
                                     <i class="nav-icon fa-solid fa-book"></i>
                                     <p>
                                         Books
@@ -176,7 +182,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{url('person')}}" class="nav-link">
+                                <a href="{{url('person')}}" class="nav-link {{ request()->routeIs('person.*') ? 'active-nav' : '' }}">
                                     <i class=" nav-icon fa-solid fa-user-plus"></i>
                                     <p>
                                         Add Person

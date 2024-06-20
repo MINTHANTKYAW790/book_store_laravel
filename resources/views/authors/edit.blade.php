@@ -27,7 +27,7 @@
 
                 <label for="author_name" class="col-md-2 col-form-label">Author Name</label>
                 <div class="col-md-6">
-                    <input type="text" name="author_name" class="form-control @error('author_name') is-invalid @enderror" id="authorName" placeholder="Enter new author name" value="{{$author->author_name}}">
+                    <input type="text" name="author_name" class="form-control @error('author_name') is-invalid @enderror" id="authorName" placeholder="Edit author name" value="{{$author->author_name}}">
                     @error('author_name')
                     <div class="invalid-feedback">{{$message}}</div>
                     @enderror

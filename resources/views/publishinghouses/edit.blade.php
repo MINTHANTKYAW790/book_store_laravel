@@ -28,7 +28,7 @@
 
                 <label for="name" class="col-md-2 col-form-label">Publishing House Name</label>
                 <div class="col-md-6">
-                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Enter new publishing house name" value="{{$publishinghouses->name}}">
+                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Edit publishing house name" value="{{$publishinghouses->name}}">
                     @error('name')
                     <div class="invalid-feedback">{{$message}}</div>
                     @enderror
