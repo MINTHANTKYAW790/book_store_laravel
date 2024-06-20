@@ -217,8 +217,8 @@ p {
     width: 224px;
     height: 0;
     transition: height 1s !important;
-    top: 37.5%;
-    left: 50%;
+    top: 39.96%;
+    left: 50.5%;
     font-family: "Times New Roman", Times, serif;
     transform: translate(-50%, -50%);
     font-size: 25px;
@@ -566,5 +566,8 @@ p {
 }
 
 @media only screen and (max-width: 450px) {
+}
+.logoutButton {
+    margin-top: 200px !important;
 }
 /* </style> */

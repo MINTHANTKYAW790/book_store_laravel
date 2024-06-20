@@ -14,7 +14,7 @@ class PublishingHouseController extends Controller
      */
     public function index()
     {
-        $publishinghouses = PublishingHouse::latest()->paginate(5);
+        $publishinghouses = PublishingHouse::latest()->paginate(10);
         return view('publishinghouses.index', compact('publishinghouses'));
     }
 

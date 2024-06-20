@@ -46,7 +46,7 @@
                     <th>Name</th>
                     <th>Action</th>
                 </tr>
-                {{$i = 1;}}
+
                 @foreach ($authors as $author)
                 <tr>
                     <td>{{$loop->index+1}}</td>
@@ -56,7 +56,7 @@
 
                     </td>
                 </tr>
-                {{$i++}}
+
                 @endforeach
 
 

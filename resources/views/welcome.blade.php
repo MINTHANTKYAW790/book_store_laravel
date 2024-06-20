@@ -40,43 +40,27 @@
 
 
     <div class="pagination paginationContainer ">
-        <?PHP
-        if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
-            echo "
-    <div id='pagination' class='pagination row row-cols-1 row-cols-xs-1 row-cols-sm-1 row-cols-md-4 row-cols-lg-4 text-center'>
 
-";
-        } else {
-            echo "  <div id='pagination' class='pagination row row-cols-1 row-cols-xs-1 row-cols-sm-1 row-cols-md-4 row-cols-lg-5 text-center'>
-    ";
-        }
-        ?>
+        <div id='pagination' class='pagination row row-cols-1 row-cols-xs-1 row-cols-sm-1 row-cols-md-5 row-cols-lg-5 text-center'>
 
-        <a href="{{url('/')}}" class="navMenu navIndex py-2">
-            <h5>HOME</h5>
-        </a>
-        <a href="{{url('guest/books/')}}" class="navMenu navBooks py-2">
-            <h5>BOOKS</h5>
-        </a>
-        <a href="{{url('guest/authors/')}}" class="navMenu navAuthors py-2">
-            <h5>AUTHORS</h5>
-        </a>
-        <a href="{{url('guest/genres/')}}" class="navMenu navCategories py-2">
-            <h5>GENRES</h5>
-        </a>
-        <?php
-        if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+            <a href="{{url('/')}}" class="navMenu navIndex py-2">
+                <h5>HOME</h5>
+            </a>
+            <a href="{{url('guest/books/')}}" class="navMenu navBooks py-2">
+                <h5>BOOKS</h5>
+            </a>
+            <a href="{{url('guest/authors/')}}" class="navMenu navAuthors py-2">
+                <h5>AUTHORS</h5>
+            </a>
+            <a href="{{url('guest/genres/')}}" class="navMenu navCategories py-2">
+                <h5>GENRES</h5>
+            </a>
+            <a href="{{url('guest/publishinghouses/')}}" class="navMenu navCategories py-2">
+                <h5>PUBLISHING HOUSES</h5>
+            </a>
 
-            echo "
-    ";
-        } else {
-            echo "<a href='../pages/admin.php' class='navMenu navAdmin py-2'>
-      <h5>ADMIN</h5>
-    </a>";
-        }
-        ?>
-    </div>
+        </div>
     </div>
 
     <main class="py-2">

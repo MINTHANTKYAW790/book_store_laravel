@@ -48,14 +48,14 @@
             </div>
             <table class="table table-bordered">
                 <tr>
-                    <th>ID</th>
+                    <th>No</th>
                     <th>Name</th>
                     <th>Action</th>
                 </tr>
 
                 @foreach ($publishinghouses as $publishighouse)
                 <tr>
-                    <td>{{$publishighouse -> id}}</td>
+                    <td>{{$loop -> index+1}}</td>
                     <td>{{$publishighouse -> name}}</td>
                     <td>
                         <a href="{{url('publishinghouses/'.$publishighouse->id.'/edit')}}" class="btn btn-success btn-sm"><i class="fa-solid fa-edit"></i></a>

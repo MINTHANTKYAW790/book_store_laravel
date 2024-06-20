@@ -43,8 +43,8 @@
             </div>
             <table class="table table-bordered">
                 <tr style="font-weight:bold">
-                    <th>ID</th>
-                    <th>Image</th>
+                    <th>No</th>
+                    <!-- <th>Image</th> -->
                     <th>Title</th>
                     <th>Author</th>
                     <th>Genre</th>
@@ -57,8 +57,8 @@
 
                 @foreach ($books as $book)
                 <tr>
-                    <td>{{$book -> id}}</td>
-                    <td><img src="{{asset('images/' . $book -> image)}}" alt="image" width=" 352px" height="485px"></td>
+                    <td>{{$loop -> index+1}}</td>
+                    <!-- <td><img src="{{asset('images/' . $book -> image)}}" alt="image" width=" 352px" height="485px"></td> -->
                     <td>{{$book -> name}}</td>
                     <td>{{ $book->author ? $book->author->author_name : 'something is missing!!!' }}</td>
                     <td>{{ $book->genre ? $book->genre->genre_name : 'something is missing!!!' }}</td>

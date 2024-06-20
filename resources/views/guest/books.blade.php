@@ -1,10 +1,10 @@
 @extends('welcome')
 @section('guestContent')
 
-<h4 class="gridContainerTitle my-4">Latest Updated Books</h4>
+<h4 class="gridContainerTitle my-4">BOOKS</h4>
 <div class="gridContainer row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5">
 
-    @foreach ($books as $book) :
+    @foreach ($books as $book)
 
 
 

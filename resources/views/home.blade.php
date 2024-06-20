@@ -184,11 +184,12 @@
                                     </p>
                                 </a>
                             </li>
-                            <li class="nav-item d-flex align-items-end">
+
+                            <li class="nav-item logoutButton">
                                 <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     <i class="nav-icon fa-solid fa-right-from-bracket"></i>
-                                    {{ __('Logout') }}
+                                    <p>Logout</p>
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf

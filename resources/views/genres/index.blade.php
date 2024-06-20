@@ -45,16 +45,16 @@
                 </div>
 
             </div>
-            <table class="table table-bordered">
+            <table class="table table-bordered table-hover">
                 <tr>
-                    <th>ID</th>
+                    <th>No</th>
                     <th>Name</th>
                     <th>Action</th>
                 </tr>
 
                 @foreach ($genres as $genre)
                 <tr>
-                    <td>{{$genre -> id}}</td>
+                    <td>{{$loop -> index+1}}</td>
                     <td>{{$genre -> genre_name}}</td>
                     <td>
                         <a href="{{url('genres/'.$genre->id.'/edit')}}" class="btn btn-success btn-sm"><i class="fa-solid fa-edit"></i></a>
