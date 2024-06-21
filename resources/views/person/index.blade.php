@@ -44,23 +44,23 @@
             <table class="table table-bordered">
                 <tr style="font-weight:bold">
                     <th>ID</th>
-                    <th>image</th>
+
                     <th>name</th>
                     <th>email</th>
                     <th>phone</th>
                     <th>address</th>
 
                     <th>position</th>
+                    <th>action</th>
 
                 </tr>
 
-                @foreach ($persons as $person)
+                @foreach ($users as $person)
                 <tr>
                     <td>{{$person -> id}}</td>
-                    <td><img src="C:/xampp/htdocs/personStoreLaravel/public/images/{{$person -> image}}" alt="image" width=" 352px" height="485px"></td>
+
                     <td>{{$person -> name}}</td>
                     <td>{{$person -> email}}</td>
-                    <td>{{$person -> genre_id}}</td>
                     <td>{{$person -> phone}}</td>
                     <td>{{$person -> address}}</td>
                     <td>{{$person -> position}}</td>
@@ -68,7 +68,7 @@
                         <form action="{{url('person/'.$person->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <a href="{{url('person/'.$person->id.'/detail')}}" class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></a>
+                            <!-- <a href="{{url('person/'.$person->id.'/detail')}}" class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></a> -->
                             <a href="{{url('person/'.$person->id.'/edit')}}" class="btn btn-success btn-sm"><i class="fa-solid fa-edit"></i></a>
                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure want to delete?')"><i class="fa-solid fa-trash"></i></button>
                         </form>
@@ -81,7 +81,7 @@
 
 
             </table>
-            {{ $persons->links() }}
+            {{ $users->links() }}
 
         </div>
     </div>

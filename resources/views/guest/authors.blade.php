@@ -8,6 +8,8 @@
 
   <a href='{{url('guest/authorbooks/'.$author->id)}}' class='card namecard' style='width: 13.7rem;'>
     <div class='card-body'>
+      <img src='{{asset('images/user.jpg')}}' class='card-img-top' height='200px' alt='$row[author_image]'>
+
       <h5 style='hover{color:white}' class='card-title'>{{$author -> author_name}}</h5>
     </div>
   </a>

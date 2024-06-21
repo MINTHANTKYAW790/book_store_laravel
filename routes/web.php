@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorController;
 // use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\PublishingHouseController;
+
 use App\Http\Controllers\PersonController;
 
 
@@ -30,6 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/publishinghouses', PublishingHouseController::class)->name('*', 'admin_publishinghouses');
     Route::resource('/books', BookController::class)->name('*', 'admin_books');
     Route::resource('/person', PersonController::class)->name('*', 'admin_person');
+    Route::get('/books/detail/{id}', [App\Http\Controllers\BookController::class, 'detail'])->name('admin_detail');
 });
 Auth::routes();
 

@@ -1,13 +1,13 @@
 @extends('welcome')
 @section('guestContent')
-
+<!-- 
 <div class='detailContainer mySlides'>
   <div class='insideDetailTextContainer row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-2'>
     <div style='width: 60%;' class='detailTextContainer'>
       <h5 class='detailText author'>{{$genres->genre_name}}</h5>
     </div>
   </div>
-</div>
+</div> -->
 
 <h4 class='booksText'>GENRES / {{$genres->genre_name}}</h4>";
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Books;
+use App\Models\User;
 use App\Models\Author;
 use App\Models\Genre;
 use App\Models\PublishingHouse;
@@ -100,8 +101,21 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        return view('books.detail');
+        $authors = Author::all();
+        $genres = Genre::all();
+        $publishingHouses = PublishingHouse::all();
+        $books = Books::find($id);
+        return view('books.detail', compact('books', 'genres', 'publishingHouses', 'authors'));
     }
+    public function detail($id)
+    {
+        $authors = Author::all();
+        $genres = Genre::all();
+        $publishingHouses = PublishingHouse::all();
+        $books = Books::find($id);
+        return view('books.detail', compact('books', 'genres', 'publishingHouses', 'authors'));
+    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -133,8 +147,7 @@ class BookController extends Controller
             'price' => 'required',
             'publishing_date' => 'required',
             'description' => 'required',
-            'image' => 'required',
-            'save_pdf' => 'required',
+
             'author_id' => 'required',
             'genre_id' => 'required',
             'publishing_house_id' => 'required',

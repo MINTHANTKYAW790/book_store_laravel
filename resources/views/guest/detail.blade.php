@@ -12,10 +12,11 @@
         <h5 class="detailText author">{{ $books->author ? $books->author->author_name : 'something is missing!!!' }}</h5>
         <h5 class="detailText status">{{$books-> name}}</h5>
         <h6 class="detailText category">{{ $books->genre ? $books->genre->genre_name : 'something is missing!!!' }}</h6>
+        <h6 class="detailText category">{{ $books->publishingHouse ? $books->publishingHouse->name : 'something is missing!!!' }}</h6>
         <p class="detailText desciption">{{$books -> description}}</p>
         <div class="detailButton">
-            <a href="{{$books -> pdf}}" download><button type="button" class="btn btn-orange">Download <i class="fa-solid fa-circle-down"></i></button></a>
-            <a href="{{$books -> pdf}}" target="_blank"><button type="button" class="btn btn-orange">Read Online <i class="fa-solid fa-eye"></i></button></a>
+            <a href="{{asset('pdfs/' . $books -> save_pdf)}}" download><button type="button" class="btn btn-orange">Download <i class="fa-solid fa-circle-down"></i></button></a>
+            <a href="{{asset('pdfs/' . $books -> save_pdf)}}" target="_blank"><button type="button" class="btn btn-orange">Read Online <i class="fa-solid fa-eye"></i></button></a>
         </div>
     </div>
 </div>

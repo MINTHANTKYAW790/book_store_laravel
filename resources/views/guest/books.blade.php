@@ -8,11 +8,14 @@
     <div class="imageBox ">
         <a href="{{url('guest/detail/'.$book->id)}}">
             <img class="imageImageBox" src="{{asset('images/' . $book -> image)}}" alt="image" height="309px" width="224px" />
-            <div class=" title"><i class="fa-solid fa-magnifying-glass"></i>
+            <div class=" title"><i class="fa-solid fa-eye"></i>
             </div>
 
             <p style="color:black;" class="authorIndex">{{ $book->author ? $book->author->author_name : 'something is missing!!!' }}</p>
+
+
             <p style="color:black" class="statusIndex"><?php echo htmlspecialchars($book->name); ?></p>
+            <p style="color:black;" class="authorIndex">{{ $book->publishingHouse ? $book->publishingHouse->name : 'something is missing!!!' }}</p>
         </a>
     </div>
     @endforeach

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Person;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class PersonController extends Controller
 {
@@ -14,8 +17,8 @@ class PersonController extends Controller
      */
     public function index()
     {
-        $persons = Person::latest()->paginate(5);
-        return view('person.index', compact('persons'));
+        $users = User::latest()->paginate(5);
+        return view('person.index', compact('users'));
     }
 
     /**
@@ -50,11 +53,11 @@ class PersonController extends Controller
         $imageFileName = auth()->id() . '_' . time() . '.' . $request->file('image')->extension();
         $request->file('image')->move(public_path('images'), $imageFileName);
 
-        Person::create(
+        User::create(
             [
                 'name' => $request->name,
                 'email' => $request->email,
-                'password' => $request->password,
+                'password' => Hash::make($request['password']),
                 'phone' => $request->phone,
                 'address' => $request->address,
                 'image' => $imageFileName,
@@ -87,8 +90,8 @@ class PersonController extends Controller
     public function edit($id)
     {
 
-        $person = Person::find($id);
-        return view('person.edit', compact('person'));
+        $users = User::find($id);
+        return view('person.edit', compact('users'));
     }
 
     /**
@@ -144,7 +147,7 @@ class PersonController extends Controller
      */
     public function destroy($id)
     {
-        Person::find($id)->delete();
+        User::find($id)->delete();
         return redirect('person')->with('successAlert', 'You have successfully deleted! ');
     }
 }

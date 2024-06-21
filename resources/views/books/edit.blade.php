@@ -1,17 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</head>
-
-<body> -->
-
 @extends('home')
 @section('authors')
 
@@ -152,7 +138,9 @@
                 <label for="image" class="col-md-2 col-form-label offset-md-2">Book Cover</label>
 
                 <div class="col-md-6">
-                    <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" accept="image/*" name="image" value="{{ $books->image}}" required autocomplete="image" autofocus>
+
+                    <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" accept="image/*" name="image" value="{{ $books->image}}" autocomplete="image" autofocus>
+                    <a href="{{asset('images/'.$books->image)}}" target="__blank">Current Image</a>
                     @error('image')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -166,7 +154,8 @@
                 <label for="save_pdf" class="col-md-2 col-form-label offset-md-2">Pdf File</label>
 
                 <div class="col-md-6">
-                    <input id="save_pdf" type="file" class="form-control @error('save_pdf') is-invalid @enderror" accept="application/pdf" name="save_pdf" value="{{ $books->save_pdf}}" required autocomplete="save_pdf" autofocus>
+                    <input id="save_pdf" type="file" class="form-control @error('save_pdf') is-invalid @enderror" accept="application/pdf" name="save_pdf" value="{{ $books->save_pdf}}" autocomplete="save_pdf" autofocus>
+                    <a href="{{asset('pdfs/'.$books->save_pdf)}}" target="__blank">Current pdf file</a>
                     @error('save_pdf')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>

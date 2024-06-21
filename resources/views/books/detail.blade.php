@@ -1,68 +1,120 @@
 @extends('home')
 @section('authors')
-<!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-        <!-- <img src="" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
-    </a>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <!-- <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
-            </div>
-            <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+<form action="{{url('books/'.$books->id)}}" method="POST" class="container" enctype="multipart/form-data">
+    @csrf
+    @method("PUT")
+    <div class="card ">
+        <div class="cardbody mt-3 ml-3 ">
+            <!-- {{ var_dump($errors->all()) }} -->
+
+            <h3>Book Detail / {{$books->name}}</h3>
+
+
+
+            <div class="detailContainer  row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-2">
+                <div class="leftDiv">
+
+
+                    <div class="row mb-3">
+                        <label for="name" class="col-md-6 col-form-label ">Book Name </label>
+                        <label class="col-md-6 col-form-label ">: &nbsp {{$books->name}}</label>
+
+                    </div>
+
+                    <!-- Code Number -->
+                    <div class="row mb-3">
+                        <label for="code_number" class="col-md-6 col-form-label ">Code Number</label>
+
+                        <label class="col-md-6 col-form-label ">: &nbsp {{$books->code_number}}</label>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="row mb-3">
+                        <label for="price" class="col-md-6 col-form-label ">Price</label>
+
+                        <label class="col-md-6 col-form-label ">: &nbsp {{$books->price}}</label>
+                    </div>
+
+                    <!-- Publishing Date -->
+                    <div class="row mb-3">
+                        <label for="publishing_date" class="col-md-6 col-form-label ">Publishing Date</label>
+
+                        <label class="col-md-6 col-form-label ">: &nbsp {{$books->publishing_date}}</label>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="row mb-3">
+                        <label for="description" class="col-md-6 col-form-label ">Description</label>
+
+                        <label class="col-md-6 col-form-label ">: &nbsp {{$books->description}}</label>
+                    </div>
+
+                    <!-- Author ID -->
+                    <div class="row mb-3">
+                        <label for="author_id" class="col-md-6 col-form-label ">Author Name</label>
+
+
+                        <label class="col-md-6 col-form-label ">: &nbsp {{$books->author->author_name}}</label>
+
+                    </div>
+
+
+                    <!-- Genre ID -->
+                    <div class="row mb-3">
+                        <label for="genre_id" class="col-md-6 col-form-label ">Genre </label>
+
+                        <label class="col-md-6 col-form-label ">: &nbsp {{$books->genre->genre_name}}</label>
+                    </div>
+
+
+                    <!-- Publishing House ID -->
+                    <div class="row mb-3">
+                        <label for="publishing_house_id" class="col-md-6 col-form-label ">Publishing House Name</label>
+                        <label class="col-md-6 col-form-label ">: &nbsp {{$books->publishingHouse->name}}</label>
+                    </div>
+
+
+
+
+                    <!-- Edition -->
+                    <div class="row mb-3">
+                        <label for="edition" class="col-md-6 col-form-label ">Edition</label>
+
+                        <label class="col-md-6 col-form-label ">: &nbsp {{$books->edition}}</label>
+                    </div>
+
+
+
+
+
+                    <a class="btn btn-primary col-md-2  mt-3" href="/books/">BACK</a>
+
+                </div>
+                <div class="rightDiv">
+
+                    <!-- Save PDF -->
+                    <div class="row mb-3">
+                        <label for="save_pdf" class="col-md-6 col-form-label ">Pdf File</label>
+
+                        <a class="col-md-6 col-form-label " target="_blank" href={{asset('pdfs/'.$books->save_pdf)}}>: Current pdf file</a>
+                    </div>
+                    <!-- Image -->
+                    <div class="row mb-3">
+
+                        <div class="imageContainer" style="width: 30%;">
+                            <img src="{{asset('images/' . $books -> image)}}" alt="image" width=" 352px" height="485px">
+                        </div>
+
+                    </div>
+
+
+                </div>
             </div>
         </div>
-
-        <!-- Sidebar Menu -->
-        <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
-                <!-- Add icons to the links using the .nav-icon class
-             with font-awesome or any other icon font library -->
-                <li class="nav-item menu-open">
-                    <a href="#" class="nav-link active">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Starter Pages
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link active">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Active Page</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Inactive Page</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Simple Link
-                            <span class="right badge badge-danger">New</span>
-                        </p>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <!-- /.sidebar-menu -->
     </div>
-    <!-- /.sidebar -->
-</aside>
+</form>
+
 @endsection
 <!-- </body>
 

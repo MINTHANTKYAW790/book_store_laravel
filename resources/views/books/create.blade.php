@@ -1,16 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</head>
-
-<body> -->
-
 @extends('home')
 @section('authors')
 
@@ -38,7 +25,7 @@
                 <label for="code_number" class="col-md-2 col-form-label offset-md-2">Code Number</label>
 
                 <div class="col-md-6">
-                    <input type="text" name="code_number" class="form-control @error('code_number') is-invalid @enderror" id="code_number" placeholder="Enter new book code number" value="{{ old('code_number') }}">
+                    <input type="number" name="code_number" min="0" class="form-control @error('code_number') is-invalid @enderror" id="code_number" placeholder="Enter new book code number" value="{{ old('code_number') }}">
                     @error('code_number')
                     <div class="invalid-feedback">{{$message}}</div>
                     @enderror
@@ -50,7 +37,7 @@
                 <label for="price" class="col-md-2 col-form-label offset-md-2">Price</label>
 
                 <div class="col-md-6">
-                    <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}">
+                    <input id="price" type="number" min="1000" class="form-control @error('price') is-invalid @enderror" placeholder="Enter book price" name="price" value="{{ old('price') }}">
                     @error('price')
                     <span class="invalid-feedback">
                         {{ $message }}
@@ -78,7 +65,7 @@
                 <label for="description" class="col-md-2 col-form-label offset-md-2">Description</label>
 
                 <div class="col-md-6">
-                    <input id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}">
+                    <input id="description" type="text" class="form-control @error('description') is-invalid @enderror" placeholder="Enter book descripiton" name="description" value="{{ old('description') }}">
                     @error('description')
                     <span class="invalid-feedback">
                         {{ $message }}
@@ -133,7 +120,7 @@
                 <label for="publishing_house_id" class="col-md-2 col-form-label offset-md-2">Publishing House Name</label>
 
                 <div class="col-md-6">
-                    <select name="publishing_house_id" id="publishing_house_id"  class="form-control @error('publishing_house_id') is-invalid @enderror" required>
+                    <select name="publishing_house_id" id="publishing_house_id" class="form-control @error('publishing_house_id') is-invalid @enderror" required>
                         <option>Choose Publishing House ...</option>
                         @foreach($publishinghouses as $publishinghouse)
                         <option value="{{ $publishinghouse->id }}" {{ old('publishing_house_id') == $publishinghouse->id ? 'selected' : '' }} required>{{ $publishinghouse->name }}</option>
@@ -175,13 +162,12 @@
                 </div>
             </div>
 
-
             <!-- Edition -->
             <div class="row mb-3">
                 <label for="edition" class="col-md-2 col-form-label offset-md-2">Edition</label>
 
                 <div class="col-md-6">
-                    <input id="edition" type="number" class="form-control @error('edition') is-invalid @enderror" name="edition" value="{{ old('edition') }}">
+                    <input id="edition" type="number" min="1" class="form-control @error('edition') is-invalid @enderror" placeholder="Enter book edition" name="edition" value="{{ old('edition') }}">
                     @error('edition')
                     <span class="invalid-feedback">
                         {{ $message }}
@@ -191,10 +177,6 @@
                     <a href="{{url('books')}}" type="button" class="btn btn-danger col-md-5 mt-2" style='float:right;'>Cancel</a>
                 </div>
             </div>
-
-
-
-
 
         </div>
     </div>

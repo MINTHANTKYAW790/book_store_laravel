@@ -13,7 +13,7 @@ class WelcomeController extends Controller
 {
     public function index()
     {
-        $books = Books::orderBy('name', 'ASC')->with(['author', 'genre', 'publishingHouse'])->paginate(10);
+        $books = Books::latest()->orderBy('name', 'ASC')->with(['author', 'genre', 'publishingHouse'])->paginate(10);
         // $books = Books::latest()->paginate(5);
         return view('guest.index', compact('books'));
     }

@@ -9,7 +9,7 @@
         $tailRow["author_image"] = "user.jpg";
       }
       echo " -->
-<div class='detailContainer mySlides'>
+<!-- <div class='detailContainer mySlides'>
   <div class='insideDetailTextContainer row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-2'>
     <div class='imageContainer' style='width: 30%;'>
 
@@ -20,7 +20,7 @@
 
     </div>
   </div>
-</div>
+</div> -->
 
 <h4 class='booksText'>BOOKS LIST / {{$authors->author_name}}</h4>";
 
