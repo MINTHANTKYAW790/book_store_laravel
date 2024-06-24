@@ -42,7 +42,7 @@ class GenreController extends Controller
         Genre::create(
             ['genre_name' => $request->genre_name]
         );
-        return redirect('genres')->with('successAlert', 'You have successfully created! ' . $request->genre_name);
+        return redirect('admin/genres')->with('successAlert', 'You have successfully created! ' . $request->genre_name);
     }
 
     /**
@@ -79,7 +79,7 @@ class GenreController extends Controller
     {
         $request->validate(['genre_name' => 'required']);
         Genre::find($id)->update(['genre_name' => $request->genre_name]);
-        return redirect('genres')->with('successAlert', 'You have successfully updated!');
+        return redirect('admin/genres')->with('successAlert', 'You have successfully updated!');
     }
 
     /**

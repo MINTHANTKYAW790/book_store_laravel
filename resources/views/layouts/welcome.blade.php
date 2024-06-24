@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Book Store</title>
+    <title>Word Wise</title>
+    <link rel="icon" type="image/x-icon" href="{{asset('images/wordwiseCircle.png')}}">
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    <!-- <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css"> -->
 
     <!-- Theme style -->
-    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-    <link rel="stylesheet" href="C:/xampp/htdocs/BookStoreLaravel/resources/css/app.css">
+    <!-- <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="C:/xampp/htdocs/BookStoreLaravel/resources/css/app.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
@@ -30,8 +32,8 @@
 
 <body>
     <nav class="row row-cols-2 row-cols-xs-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-2 py-3 navbar">
-        <a href="../pages/index.php" class="row row-cols-2" style="text-decoration:none">
-            <img src="{{asset('images/wordwise.png')}}" alt="logo" class="logoImage p-0" style="width:22px; height:30px">
+        <a href="/" class="row row-cols-2" style="text-decoration:none">
+            <img src="{{asset('images/wordwise.png')}}" alt="logo" class="logoImage p-0" style="width:10px; height:40px">
             <h3 class="text-orange p-0 m-0 ">WORD WISE</h3>
         </a>
 
@@ -53,14 +55,14 @@
             <a href="{{url('guest/books/')}}" class="navMenu  py-2 {{ request()->routeIs('ubooks') ? 'active-nav' : '' }}">
                 <h5>BOOKS</h5>
             </a>
-            <a href="{{url('guest/authors/')}}" class="navMenu  py-2 {{ request()->routeIs('uauthors') ? 'active-nav' : '' }}">
+            <a href="{{url('guest/authors/')}}" class="navMenu  py-2 {{ request()->routeIs('uauthors') || request()->routeIs('authorbooks') ? 'active-nav' : '' }}">
                 <h5>AUTHORS</h5>
             </a>
 
-            <a href="{{url('guest/genres/')}}" class="navMenu  py-2 {{ request()->routeIs('ugenres') ? 'active-nav' : '' }}">
+            <a href="{{url('guest/genres/')}}" class="navMenu  py-2 {{ request()->routeIs('ugenres') || request()->routeIs('genrebooks') ? 'active-nav' : '' }}">
                 <h5>GENRES</h5>
             </a>
-            <a href="{{url('guest/publishinghouses/')}}" class="navMenu  py-2 {{ request()->routeIs('upublishinghouses') ? 'active-nav' : '' }}">
+            <a href="{{url('guest/publishinghouses/')}}" class="navMenu  py-2 {{ request()->routeIs('upublishinghouses') || request()->routeIs('pbhbooks') ? 'active-nav' : '' }}">
                 <h5>PUBLISHING HOUSES</h5>
             </a>
 

@@ -1,7 +1,7 @@
-@extends('home')
-@section('authors')
+@extends('layouts/home')
+@section('content')
 
-<form action="{{url('books')}}" method="post" class="container" enctype="multipart/form-data">
+<form action="{{url('admin/books')}}" method="post" class="container" enctype="multipart/form-data">
     {{csrf_field()}}
     <div class="card ">
         <div class="cardbody mt-3 ml-3">
@@ -25,7 +25,7 @@
                 <label for="code_number" class="col-md-2 col-form-label offset-md-2">Code Number</label>
 
                 <div class="col-md-6">
-                    <input type="number" name="code_number" min="0" class="form-control @error('code_number') is-invalid @enderror" id="code_number" placeholder="Enter new book code number" value="{{ old('code_number') }}">
+                    <input type="text" name="code_number" min="0" class="form-control @error('code_number') is-invalid @enderror" id="code_number" placeholder="Enter new book code number" value="{{ old('code_number') }}">
                     @error('code_number')
                     <div class="invalid-feedback">{{$message}}</div>
                     @enderror
@@ -37,7 +37,7 @@
                 <label for="price" class="col-md-2 col-form-label offset-md-2">Price</label>
 
                 <div class="col-md-6">
-                    <input id="price" type="number" min="1000" class="form-control @error('price') is-invalid @enderror" placeholder="Enter book price" name="price" value="{{ old('price') }}">
+                    <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" placeholder="Enter book price" name="price" value="{{ old('price') }}">
                     @error('price')
                     <span class="invalid-feedback">
                         {{ $message }}
@@ -51,7 +51,7 @@
                 <label for="publishing_date" class="col-md-2 col-form-label offset-md-2">Publishing Date</label>
 
                 <div class="col-md-6">
-                    <input id="publishing_date" type="date" class="form-control @error('publishing_date') is-invalid @enderror" name="publishing_date" value="{{ old('publishing_date') }}">
+                    <input id="publishing_date" type="date" class="form-control @error('publishing_date') is-invalid @enderror" name="publishing_date" value="{{ old('publishing_date') }}" placeholder="dd-mm-yyyy">
                     @error('publishing_date')
                     <span class="invalid-feedback">
                         {{ $message }}
@@ -173,10 +173,18 @@
                         {{ $message }}
                     </span>
                     @enderror
-                    <button type="submit" class="btn btn-primary col-md-5 mt-2">Create</button>
-                    <a href="{{url('books')}}" type="button" class="btn btn-danger col-md-5 mt-2" style='float:right;'>Cancel</a>
                 </div>
             </div>
+
+            <!-- Button -->
+            <div class="row mb-3">
+                <div class="col-md-6 offset-md-6">
+                    <button type="submit" class="btn btn-primary offset-md-2 col-md-3 mt-2">Create</button>
+                    <a href="{{url('admin/books')}}" type="button" class="btn btn-danger col-md-3 mt-2">Cancel</a>
+                </div>
+            </div>
+
+
 
         </div>
     </div>

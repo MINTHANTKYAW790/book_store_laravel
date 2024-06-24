@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('layouts.welcome')
 @section('guestContent')
 
 <h4 class="gridContainerTitle my-4">BOOKS</h4>

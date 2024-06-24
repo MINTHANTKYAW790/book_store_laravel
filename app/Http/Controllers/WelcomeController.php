@@ -13,7 +13,7 @@ class WelcomeController extends Controller
 {
     public function index()
     {
-        $books = Books::latest()->orderBy('name', 'ASC')->with(['author', 'genre', 'publishingHouse'])->paginate(10);
+        $books = Books::latest()->where('deleted', 0)->orderBy('name', 'ASC')->with(['author', 'genre', 'publishingHouse'])->paginate(10);
         // $books = Books::latest()->paginate(5);
         return view('guest.index', compact('books'));
     }
@@ -29,7 +29,7 @@ class WelcomeController extends Controller
 
     public function books()
     {
-        $books = Books::orderBy('name', 'ASC')->with(['author', 'genre', 'publishingHouse'])->paginate(10);
+        $books = Books::orderBy('name', 'ASC')->where('deleted', 0)->with(['author', 'genre', 'publishingHouse'])->paginate(10);
         // $books = Books::latest()->paginate(5);
         return view('guest.books', compact('books'));
     }
@@ -52,19 +52,19 @@ class WelcomeController extends Controller
     {
 
 
-        $books = Books::where('author_id', $id)->get();
+        $books = Books::where('author_id', $id)->where('deleted', 0)->get();
         $authors = Author::where('id', $id)->first();
         return view('guest.authorBooks', compact('books', 'authors'));
     }
     public function genrebooks($id)
     {
-        $books = Books::where('genre_id', $id)->get();
+        $books = Books::where('genre_id', $id)->where('deleted', 0)->get();
         $genres = Genre::where('id', $id)->first();
         return view('guest.genrebooks', compact('books', 'genres'));
     }
     public function pbhbooks($id)
     {
-        $books = Books::where('publishing_house_id', $id)->get();
+        $books = Books::where('publishing_house_id', $id)->where('deleted', 0)->get();
         $publishing_houses = PublishingHouse::where('id', $id)->first();
         return view('guest.pbhbooks', compact('books', 'publishing_houses'));
     }

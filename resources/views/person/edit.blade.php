@@ -1,43 +1,26 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
+@extends('layouts.home')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</head>
+@section('content')
 
-<body> -->
 
-@extends('home')
-@section('authors')
 
-<form action="{{url('books/'.$books->id)}}" method="POST" class="container" enctype="multipart/form-data">
+<form action="{{url('admin/person/'.$users->id)}}" method="POST" class="container" enctype="multipart/form-data">
     @csrf
     @method("PUT")
     <div class="card ">
         <div class="cardbody mt-3 ml-3">
             {{ var_dump($errors->all()) }}
-            <h3>Edit Books</h3>
+            <h3 class="mb-4">Edit Authourized Person</h3>
+            <!-- Name -->
+
             <div class="row mb-3">
-                <label for="name" class="col-md-2 col-form-label offset-md-2">Book Name</label>
-                <div class="col-md-6"><input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Enter new author name" value="{{$books->name}}">
+                <label for="name" class="col-md-2 col-form-label offset-md-2">{{ __('Name') }}</label>
+
+                <div class="col-md-6">
+                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $users->name}}" required autocomplete="name" autofocus>
+
                     @error('name')
-                    <div class="invalid-feedback">{{$message}}</div>
-                    @enderror
-                </div>
-            </div>
-
-            <!-- Code Number -->
-            <div class="row mb-3">
-                <label for="code_number" class="col-md-2 col-form-label offset-md-2">Code Number</label>
-
-                <div class="col-md-6">
-                    <input id="code_number" type="number" class="form-control @error('code_number') is-invalid @enderror" name="code_number" value="{{$books->code_number}}" required autocomplete="code_number" autofocus>
-                    @error('code_number')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -45,13 +28,27 @@
                 </div>
             </div>
 
-            <!-- Price -->
             <div class="row mb-3">
-                <label for="price" class="col-md-2 col-form-label offset-md-2">Price</label>
+                <label for="email" class="col-md-2 col-form-label offset-md-2">{{ __('Email Address') }}</label>
 
                 <div class="col-md-6">
-                    <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ $books->price }}" required autocomplete="price" autofocus>
-                    @error('price')
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $users->email}}" required autocomplete="email">
+
+                    @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+            </div>
+            <!-- 
+            <div class="row mb-3">
+                <label for="password" class="col-md-2 col-form-label offset-md-2">{{ __('Password') }}</label>
+
+                <div class="col-md-6">
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                    @error('password')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -59,13 +56,21 @@
                 </div>
             </div>
 
-            <!-- Publishing Date -->
             <div class="row mb-3">
-                <label for="publishing_date" class="col-md-2 col-form-label offset-md-2">Publishing Date</label>
+                <label for="password-confirm" class="col-md-2 col-form-label offset-md-2">{{ __('Confirm Password') }}</label>
 
                 <div class="col-md-6">
-                    <input id="publishing_date" type="date" class="form-control @error('publishing_date') is-invalid @enderror" name="publishing_date" value="{{ $books->publishing_date }}" required autocomplete="publishing_date" autofocus>
-                    @error('publishing_date')
+                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                </div>
+            </div> -->
+
+            <div class="row mb-3">
+                <label for="phone" class="col-md-2 col-form-label offset-md-2">{{ __('Phone') }}</label>
+
+                <div class="col-md-6">
+                    <input id="phone" type="phone" class="form-control @error('phone') is-invalid @enderror" name="phone" required autocomplete="new-phone" value="{{ $users->phone}}">
+
+                    @error('phone')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -73,13 +78,13 @@
                 </div>
             </div>
 
-            <!-- Description -->
             <div class="row mb-3">
-                <label for="description" class="col-md-2 col-form-label offset-md-2">Description</label>
+                <label for="address" class="col-md-2 col-form-label offset-md-2">{{ __('Address') }}</label>
 
                 <div class="col-md-6">
-                    <input id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{$books->description }}" required autocomplete="description" autofocus>
-                    @error('description')
+                    <input id="address" type="address" class="form-control @error('address') is-invalid @enderror" name="address" required autocomplete="new-address" value="{{ $users->address}}">
+
+                    @error('address')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -87,72 +92,12 @@
                 </div>
             </div>
 
-            <!-- Author ID -->
             <div class="row mb-3">
-                <label for="author_id" class="col-md-2 col-form-label offset-md-2">Author Name</label>
+                <label for="image" class="col-md-2 col-form-label offset-md-2">{{ __('Image') }}</label>
 
                 <div class="col-md-6">
-                    <select name="author_id" id="author_id" class="form-control @error('author_id') is-invalid @enderror">
-
-                        @foreach($authors as $author)
-                        <option value="{{ $author->id }}" {{ old('author_id') == $author->id ? 'selected' : '' }}>{{ $author->author_name }}</option>
-                        @endforeach
-                    </select>
-                    @error('author_id')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
-            </div>
-
-
-            <!-- Genre ID -->
-            <div class="row mb-3">
-                <label for="genre_id" class="col-md-2 col-form-label offset-md-2">Genre </label>
-
-                <div class="col-md-6">
-                    <select name="genre_id" id="genre_id" class="form-control @error('genre_id') is-invalid @enderror">
-
-                        @foreach($genres as $genre)
-                        <option value="{{ $genre->id }}" {{ old('genre_id') == $genre->id ? 'selected' : '' }}>{{ $genre->genre_name }}</option>
-                        @endforeach
-                    </select>
-                    @error('genre_id')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
-            </div>
-
-
-            <!-- Publishing House ID -->
-            <div class="row mb-3">
-                <label for="publishing_house_id" class="col-md-2 col-form-label offset-md-2">Publishing House Name</label>
-
-                <div class="col-md-6">
-                    <select name="publishing_house_id" id="publishing_house_id" class="form-control @error('publishing_house_id') is-invalid @enderror">
-
-                        @foreach($publishinghouses as $publishinghouse)
-                        <option value="{{ $publishinghouse->id }}" {{ old('publishing_house_id') == $publishinghouse->id ? 'selected' : '' }}>{{ $publishinghouse->name }}</option>
-                        @endforeach
-                    </select>
-                    @error('publishing_house_id')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
-            </div>
-
-
-            <!-- Image -->
-            <div class="row mb-3">
-                <label for="image" class="col-md-2 col-form-label offset-md-2">Book Cover</label>
-
-                <div class="col-md-6">
-                    <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" accept="image/*" name="image" value="{{ $books->image}}" required autocomplete="image" autofocus>
+                    <input id="image" accept="image/*" type="file" class="form-control @error('image') is-invalid @enderror" name="image" autocomplete="new-image">
+                    <a href="{{asset('images/'.$users->image)}}" target="__blank">Current Image</a>
                     @error('image')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -161,43 +106,27 @@
                 </div>
             </div>
 
-            <!-- Save PDF -->
             <div class="row mb-3">
-                <label for="save_pdf" class="col-md-2 col-form-label offset-md-2">Pdf File</label>
+                <label for="position" class="col-md-2 col-form-label offset-md-2">{{ __('Position') }}</label>
 
                 <div class="col-md-6">
-                    <input id="save_pdf" type="file" class="form-control @error('save_pdf') is-invalid @enderror" accept="application/pdf" name="save_pdf" value="{{ $books->save_pdf}}" required autocomplete="save_pdf" autofocus>
-                    @error('save_pdf')
+                    <input id="position" type="position" class="form-control @error('position') is-invalid @enderror" name="position" required autocomplete="new-position" value="{{ $users->position}}">
+
+                    @error('position')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                     @enderror
+
                 </div>
             </div>
 
-            <!-- Edition -->
             <div class="row mb-3">
-                <label for="edition" class="col-md-2 col-form-label offset-md-2">Edition</label>
-
-                <div class="col-md-6">
-                    <input id="edition" type="number" class="form-control @error('edition') is-invalid @enderror" name="edition" value="{{ $books->edition }}" required autocomplete="edition" autofocus>
-                    @error('edition')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                    <button type="submit" class="btn btn-primary col-md-5 mt-2">Update</button>
-                    <a href="{{url('books')}}" type="button" class="btn btn-danger col-md-5 mt-2" style='float:right;'>Cancel</a>
+                <div class="col-md-6 offset-md-6">
+                    <button type="submit" class="btn btn-primary offset-md-2 col-md-3 mt-2">Update</button>
+                    <a href="{{url('admin/person')}}" type="button" class="btn btn-danger col-md-3 mt-2">Cancel</a>
                 </div>
             </div>
-
-
-
         </div>
     </div>
-</form>
-
-@endsection
-<!-- </body>
-
-</html> -->
+</form>@endsection

@@ -1,25 +1,12 @@
-@extends('welcome')
+@extends('layouts.welcome')
 @section('guestContent')
-<!-- 
-<div class='detailContainer mySlides'>
-  <div class='insideDetailTextContainer row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-2'>
-    <div style='width: 60%;' class='detailTextContainer'>
-      <h5 class='detailText author'>{{$genres->genre_name}}</h5>
-    </div>
-  </div>
-</div> -->
 
 <h4 class='booksText'>GENRES / {{$genres->genre_name}}</h4>";
-
-
-
 <!-- This is in the display period of the BOOKS page -->
 <div class="gridContainer row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5">
-
-
-
-
-
+  @if($books->isEmpty())
+  <p style="color:black" class="statusIndex pl-4"> There is no books.</p>
+  @else
   @foreach ($books as $book)
 
 
@@ -35,6 +22,7 @@
     </a>
   </div>
   @endforeach
+  @endif
 </div>
 
 

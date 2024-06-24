@@ -20,7 +20,8 @@ class BookController extends Controller
 
     public function index()
     {
-        $books = Books::latest()->with(['author', 'genre', 'publishingHouse', 'user'])->paginate(6);
+        $limit = 10;
+        $books = Books::latest()->where('deleted', 0)->take($limit)->with(['author', 'genre', 'publishingHouse', 'user'])->paginate(10);
         // $books = Books::latest()->paginate(5);
         return view('books.index', compact('books'));
     }
@@ -33,9 +34,9 @@ class BookController extends Controller
      */
     public function create()
     {
-        $authors = Author::all();
-        $genres = Genre::all();
-        $publishinghouses = PublishingHouse::all();
+        $authors = Author::orderBy('author_name', 'ASC')->get();
+        $genres = Genre::orderBy('genre_name', 'ASC')->get();
+        $publishinghouses = PublishingHouse::orderBy('name', 'ASC')->get();
 
         return view('books.create', compact('authors', 'genres', 'publishinghouses'));
     }
@@ -90,7 +91,14 @@ class BookController extends Controller
             ]
 
         );
-        return redirect('books')->with('successAlert', 'You have successfully created! ' . $request->name);
+        return redirect('admin/books')->with('successAlert', 'You have successfully created! ' . $request->name);
+    }
+
+    public function messages()
+    {
+        return [
+            'username.regex' => 'The username may only contain letters, numbers, spaces, and underscores.',
+        ];
     }
 
     /**
@@ -125,9 +133,9 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        $authors = Author::all();
-        $genres = Genre::all();
-        $publishinghouses = PublishingHouse::all();
+        $authors = Author::orderBy('author_name', 'ASC')->get();
+        $genres = Genre::orderBy('genre_name', 'ASC')->get();
+        $publishinghouses = PublishingHouse::orderBy('name', 'ASC')->get();
         $books = Books::find($id);
         return view('books.edit', compact('books', 'genres', 'publishinghouses', 'authors'));
     }
@@ -146,20 +154,26 @@ class BookController extends Controller
             'code_number' => 'required',
             'price' => 'required',
             'publishing_date' => 'required',
-            'description' => 'required',
-
+            'description' => ['required', 'max:255'],
             'author_id' => 'required',
             'genre_id' => 'required',
             'publishing_house_id' => 'required',
             'edition' => 'required',
 
+
+
         ]);
-
-        $imageFileName = auth()->id() . '_' . time() . '.' . $request->file('image')->extension();
-        $request->file('image')->move(public_path('images'), $imageFileName);
-
-        $pdfFileName = auth()->id() . '_' . time() . '.' . $request->file('save_pdf')->extension();
-        $request->file('save_pdf')->move(public_path('pdfs'), $pdfFileName);
+        $book = Books::find($id);
+        $imageFileName = $book->image;
+        if ($request->hasFile('image')) {
+            $imageFileName = auth()->id() . '_' . time() . '.' . $request->file('image')->extension();
+            $request->file('image')->move(public_path('images'), $imageFileName);
+        }
+        $pdfFileName = $book->save_pdf;
+        if ($request->hasFile('save_pdf')) {
+            $pdfFileName = auth()->id() . '_' . time() . '.' . $request->file('save_pdf')->extension();
+            $request->file('save_pdf')->move(public_path('pdfs'), $pdfFileName);
+        }
 
         Books::find($id)->update([
             'name' => $request->name,
@@ -174,9 +188,9 @@ class BookController extends Controller
             'publishing_house_id' => $request->publishing_house_id,
             'edition' => $request->edition,
             'deleted' => 0,
-            'inserted_by' => 0
+            'inserted_by' => auth()->user()->id
         ]);
-        return redirect('books')->with('successAlert', 'You have successfully updated!');
+        return redirect('admin/books')->with('successAlert', 'You have successfully updated!');
     }
 
     /**
@@ -187,7 +201,10 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        Books::find($id)->delete();
-        return redirect('books')->with('successAlert', 'You have successfully deleted! ');
+        Books::find($id)->update([
+            'deleted' => 1,
+            'inserted_by' => auth()->user()->id
+        ]);
+        return redirect('admin/books')->with('successAlert', 'You have successfully deleted! ');
     }
 }

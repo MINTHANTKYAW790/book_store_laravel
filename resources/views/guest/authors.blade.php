@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('layouts.welcome')
 @section('guestContent')
 <h4 class="gridContainerTitle my-4">AUTHORS</h4>
 <!-- </div> -->
@@ -7,11 +7,12 @@
   @foreach ($authors as $author)
 
   <a href='{{url('guest/authorbooks/'.$author->id)}}' class='card namecard' style='width: 13.7rem;'>
+    <img src='{{asset('images/user.jpg')}}' class='mt-3' height='200px' alt='author image' style="border-radius:10px">
     <div class='card-body'>
-      <img src='{{asset('images/user.jpg')}}' class='card-img-top' height='200px' alt='$row[author_image]'>
-
       <h5 style='hover{color:white}' class='card-title'>{{$author -> author_name}}</h5>
     </div>
+
+
   </a>
   @endforeach
 

@@ -16,7 +16,7 @@ nav {
 }
 
 .logoImage {
-    width: 60px !important;
+    width: 35px !important;
     height: 30px !important;
 }
 
@@ -90,6 +90,7 @@ nav {
 .navMenu:hover {
     background-color: #f07c29;
     color: white;
+    overflow: hidden;
 }
 
 /* This is for the footer */
@@ -149,7 +150,8 @@ a:hover {
     color: #c4c4c4;
 }
 
-/* This is for the pagination */
+/* This is for the 
+ */
 .pagination {
     position: sticky;
     top: 0;
@@ -194,7 +196,7 @@ p {
 
 .imageBox {
     position: relative;
-    margin: 5% 0;
+    margin: 1% 0;
 }
 
 .title:hover,
@@ -478,7 +480,7 @@ p {
 .booksText {
     width: 90%;
     margin: 0 auto;
-    padding: 2% 1.5%;
+    padding: 1% 1.5%;
     color: #db5e04;
 }
 
@@ -492,7 +494,7 @@ p {
     background-color: #db5e04;
     color: white;
     width: 250px;
-    height: 350px;
+    height: 250px;
 
     overflow: hidden !important;
     border-radius: 20px;
@@ -519,27 +521,6 @@ p {
     width: 300px;
 }
 
-/* .card-img-top {
-    width: 250px;
-    text-align: center !important;
-    padding-left: 12%;
-} */
-/* .namecard :hover {
-    margin-bottom: 6px !important;
-    background-color: #db5e04;
-    color: white;
-    width: 400px;
-    height: 500px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 20px;
-
-    box-shadow: 0 8px #c9bcbc;
-    transition-duration: 0.2s;
-} */
 .ui-menu-item-wrapper,
 .ui-menu-item {
     background-color: gray !important;

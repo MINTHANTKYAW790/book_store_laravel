@@ -1,69 +1,80 @@
-@extends('home')
-@section('authors')
-<!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-        <!-- <img src="" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
-    </a>
+@extends('layouts/home')
+@section('content')
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <!-- <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
+
+<div class="container" id="authors">
+    <div class="card ">
+        <div class="cardbody mt-3 ml-3 ">
+            <!-- {{ var_dump($errors->all()) }} -->
+            <div class="row">
+                <div class="col-sm-6">
+                    <h4>Authorized Person / {{$users -> name}}</h4>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right mr-3">
+                        <a href="{{url('admin/person/')}}" class="btn btn-primary btn-sm "><i class="fa-solid fa-arrow-left"></i> Back</a>
+                    </ol>
+                </div>
             </div>
-            <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+
+            <div class="detailContainer  row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-2">
+                <div class="leftDiv">
+
+                    <!-- Image -->
+                    <div class="row mb-3">
+                        <div class="imageContainer" style="width: 30%;">
+                            <img src="{{asset('images/' . $users -> image)}}" alt="image" width=" 322px" height="445px">
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="rightDiv">
+
+                    <div class="row mb-3">
+                        <label for="name" class="col-md-6 col-form-label ">Name </label>
+                        <label class="col-md-6 col-form-label ">: &nbsp {{$users->name}}</label>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="row mb-3">
+                        <label for="email" class="col-md-6 col-form-label ">Email</label>
+                        <label class="col-md-6 col-form-label ">: &nbsp {{$users->email}}</label>
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div class="row mb-3">
+                        <label for="phone" class="col-md-6 col-form-label ">Phone Number</label>
+                        <label class="col-md-6 col-form-label ">: &nbsp {{$users->phone}}</label>
+                    </div>
+
+                    <!-- Address -->
+                    <div class="row mb-3">
+                        <label for="address" class="col-md-6 col-form-label ">Address</label>
+                        <label class="col-md-6 col-form-label ">: &nbsp {{$users->address}}</label>
+                    </div>
+
+                    <!-- Position -->
+                    <div class="row mb-3">
+                        <label for="position" class="col-md-6 col-form-label ">Position</label>
+                        <label class="col-md-6 col-form-label ">: &nbsp {{$users->position}}</label>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <!-- Sidebar Menu -->
-        <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
-                <!-- Add icons to the links using the .nav-icon class
-             with font-awesome or any other icon font library -->
-                <li class="nav-item menu-open">
-                    <a href="#" class="nav-link active">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Starter Pages
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link active">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Active Page</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Inactive Page</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Simple Link
-                            <span class="right badge badge-danger">New</span>
-                        </p>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <!-- /.sidebar-menu -->
     </div>
-    <!-- /.sidebar -->
-</aside>
-@endsection
-<!-- </body>
+</div>
+<!-- <style>
+    .link {
+        cursor: pointer !important;
 
-</html> -->
+    }
+
+    .link:hover {
+
+        color: red !important;
+    }
+</style> -->
+
+@endsection

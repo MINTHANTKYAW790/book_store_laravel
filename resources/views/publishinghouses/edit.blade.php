@@ -1,24 +1,7 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
+@extends('layouts.home')
+@section('content')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</head>
-
-<body> -->
-@extends('../home')
-
-
-@section('authors')
-
-
-
-<form action="{{url('publishinghouses/'.$publishinghouses->id)}}" method="POST" class="container">
+<form action="{{url('admin/publishinghouses/'.$publishinghouses->id)}}" method="POST" class="container">
     @csrf
     @method("PUT")
     <div class="card ">
@@ -32,15 +15,17 @@
                     @error('name')
                     <div class="invalid-feedback">{{$message}}</div>
                     @enderror
-                    <button type="submit" class="btn btn-primary col-md-5 mt-2">Update</button>
-                    <a href="{{url('publishinghouses')}}" type="button" class="btn btn-danger col-md-5 mt-2" style='float:right;'>Cancel</a>
-
                 </div>
             </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6 offset-md-5">
+                    <button type="submit" class="btn btn-primary col-md-3 mt-2">Update</button>
+                    <a href="{{url('admin/publishinghouses')}}" type="button" class="btn btn-danger col-md-3 mt-2">Cancel</a>
+                </div>
+            </div>
+
         </div>
     </div>
 </form>
 @endsection
-<!-- </body>
-
-</html> -->

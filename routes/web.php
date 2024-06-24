@@ -3,11 +3,11 @@
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorController;
-// use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\BackupBinController;
+use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\PublishingHouseController;
-
 use App\Http\Controllers\PersonController;
 
 
@@ -27,12 +27,12 @@ use App\Http\Controllers\PersonController;
 // });
 
 Route::middleware('auth')->group(function () {
-    Route::resource('/authors', AuthorController::class)->name('*', 'admin_authors');
-    Route::resource('/genres', GenreController::class)->name('*', 'admin_genres');
-    Route::resource('/publishinghouses', PublishingHouseController::class)->name('*', 'admin_publishinghouses');
-    Route::resource('/books', BookController::class)->name('*', 'admin_books');
-    Route::resource('/person', PersonController::class)->name('*', 'admin_person');
-    Route::get('/books/detail/{id}', [App\Http\Controllers\BookController::class, 'detail'])->name('admin_detail');
+    Route::resource('admin/authors', AuthorController::class)->name('*', 'admin_authors');
+    Route::resource('admin/genres', GenreController::class)->name('*', 'admin_genres');
+    Route::resource('admin/publishinghouses', PublishingHouseController::class)->name('*', 'admin_publishinghouses');
+    Route::resource('admin/books', BookController::class)->name('*', 'admin_books');
+    Route::resource('admin/person', PersonController::class)->name('*', 'admin_person');
+    Route::resource('admin/backup', BackupBinController::class)->name('*', 'admin_backup');
 });
 Auth::routes();
 

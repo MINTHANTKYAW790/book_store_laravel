@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('layouts.welcome')
 @section('guestContent')
 
 
@@ -11,7 +11,9 @@
 
 
 
-
+    @if($books->isEmpty())
+    <p style="color:black" class="statusIndex pl-4"> There is no books.</p>
+    @else
 
     @foreach ($books as $book)
 
@@ -28,6 +30,7 @@
         </a>
     </div>
     @endforeach
+    @endif
 </div>
 
 

@@ -42,7 +42,7 @@ class AuthorController extends Controller
         Author::create(
             ['author_name' => $request->author_name]
         );
-        return redirect('authors')->with('successAlert', 'You have successfully created! ' . $request->author_name);
+        return redirect('admin/authors')->with('successAlert', 'You have successfully created! ' . $request->author_name);
     }
 
     /**
@@ -79,7 +79,7 @@ class AuthorController extends Controller
     {
         $request->validate(['author_name' => 'required']);
         Author::find($id)->update(['author_name' => $request->author_name]);
-        return redirect('authors')->with('successAlert', 'You have successfully updated!');
+        return redirect('admin/authors')->with('successAlert', 'You have successfully updated!');
     }
 
     /**

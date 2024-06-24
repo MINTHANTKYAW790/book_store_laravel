@@ -4,15 +4,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Blank Page</title>
+    <link rel="icon" type="image/x-icon" href="{{asset('images/wordwiseCircle.png')}}">
+
+    <title>Word Wise</title>
 
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
 </head>
 
 <body class="hold-transition sidebar-mini">
 
-    <div class="container" style="padding-top:10%">
+    <div class="container loginbc" style="padding-top:10%;">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -62,9 +65,9 @@
                                 </div>
                             </div> -->
 
-                            
+
                             <div class="row mb-2">
-                                <div class="col-md-8 offset-md-4" style="width:100%">
+                                <div class="col-md-3 offset-md-8" style="width:100%">
                                     <button type="submit" class="btn btn-primary ">
                                         {{ __('Login') }}
                                     </button>

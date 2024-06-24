@@ -42,7 +42,7 @@ class PublishingHouseController extends Controller
         PublishingHouse::create(
             ['name' => $request->name]
         );
-        return redirect('publishinghouses')->with('successAlert', 'You have successfully created! ' . $request->name);
+        return redirect('admin/publishinghouses')->with('successAlert', 'You have successfully created! ' . $request->name);
     }
 
     /**
@@ -79,7 +79,7 @@ class PublishingHouseController extends Controller
     {
         $request->validate(['name' => 'required']);
         PublishingHouse::find($id)->update(['name' => $request->name]);
-        return redirect('publishinghouses')->with('successAlert', 'You have successfully updated!');
+        return redirect('admin/publishinghouses')->with('successAlert', 'You have successfully updated!');
     }
 
     /**

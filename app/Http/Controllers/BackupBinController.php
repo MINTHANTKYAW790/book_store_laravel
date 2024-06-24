@@ -3,8 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Books;
+use App\Models\User;
+use App\Models\Author;
+use App\Models\Genre;
+use App\Models\PublishingHouse;
+use Illuminate\Support\Facades\Auth;
 
-class AdminController extends Controller
+class BackupBinController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +19,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        $books = Books::latest()->where('deleted', 1)->with(['author', 'genre', 'publishingHouse', 'user'])->paginate(6);
+        // $books = Books::latest()->paginate(5);
+        return view('backup.index', compact('books'));
     }
 
     /**
@@ -45,7 +53,11 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
+        $authors = Author::all();
+        $genres = Genre::all();
+        $publishingHouses = PublishingHouse::all();
+        $books = Books::find($id);
+        return view('backup.detail', compact('books', 'genres', 'publishingHouses', 'authors'));
     }
 
     /**
@@ -79,6 +91,10 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Books::find($id)->update([
+            'deleted' => 0,
+            'inserted_by' => auth()->user()->id
+        ]);
+        return redirect('admin/backup')->with('successAlert', 'You have successfully restored! ');
     }
 }

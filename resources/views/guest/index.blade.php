@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('layouts.welcome')
 @section('guestContent')
 
 
@@ -130,7 +130,7 @@
   }
 </script>
 
-<h4 class="gridContainerTitle my-4">LATEST UPDATED BOOKS</h4>
+<h4 class="gridContainerTitle my-4 booksText">LATEST UPDATED BOOKS</h4>
 <div class="gridContainer row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5">
 
   @foreach ($books as $book)

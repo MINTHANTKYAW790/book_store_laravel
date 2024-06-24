@@ -4,17 +4,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Book Store</title>
+    <title>Word Wise</title>
+    <link rel="icon" type="image/x-icon" href="{{asset('images/wordwiseCircle.png')}}">
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    <!-- <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css"> -->
     <!-- Theme style -->
-    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+    <!-- <link rel="stylesheet" href="../../dist/css/adminlte.min.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <style>
         .active-nav {
@@ -26,9 +27,6 @@
 
 
 <body>
-
-
-
     <!-- Site wrapper -->
     <div class="wrapper">
 
@@ -60,9 +58,9 @@
             <!-- Main Sidebar Container -->
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <!-- Brand Logo -->
-                <a href="/books" class="brand-link" style="text-decoration:none">
-                    <!-- <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
-                    <span class="brand-text font-weight-light">Book Store</span>
+                <a href="{{url('admin/books')}}" class="brand-link" style="text-decoration:none">
+                    <img src="{{asset('images/wordwiseCircle.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                    <span class="brand-text font-weight-light">Word Wise Admin</span>
                 </a>
 
                 <!-- Sidebar -->
@@ -70,10 +68,10 @@
                     <!-- Sidebar user (optional) -->
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
-                            <!-- <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
+                            <img src="{{asset('images/'.Auth::user()->image)}}" class="img-circle elevation-2" alt="User Image">
                         </div>
                         <div class="info">
-                            <a href="#" class="d-block" style="text-decoration:none">{{ Auth::user()->name }}</a>
+                            <a href="{{url('admin/person/'.Auth::user()->id)}}" class="d-block" style="text-decoration:none">{{ Auth::user()->name }}</a>
                         </div>
                     </div>
 
@@ -82,7 +80,7 @@
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-item">
-                                <a href="{{url('books')}}" class="nav-link {{ request()->routeIs('books.*' ) ? 'active-nav' : '' }}">
+                                <a href="{{url('admin/books')}}" class="nav-link {{ request()->routeIs('books.*' )? 'active-nav' : '' }}">
                                     <i class="nav-icon fa-solid fa-book"></i>
                                     <p>
                                         Books
@@ -91,7 +89,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{url('authors')}}" class="nav-link {{ request()->routeIs('authors.*') ? 'active-nav' : '' }}">
+                                <a href="{{url('admin/authors')}}" class="nav-link {{ request()->routeIs('authors.*') ? 'active-nav' : '' }}">
                                     <i class="nav-icon fa-solid fa-user"></i>
                                     <p>
                                         Authors
@@ -100,7 +98,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{url('genres')}}" class="nav-link {{ request()->routeIs('genres.*') ? 'active-nav' : '' }}">
+                                <a href="{{url('admin/genres')}}" class="nav-link {{ request()->routeIs('genres.*') ? 'active-nav' : '' }}">
                                     <i class="nav-icon fa-solid fa-layer-group "></i>
                                     <p>
                                         Genres
@@ -109,7 +107,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{url('publishinghouses')}}" class="nav-link {{ request()->routeIs('publishinghouses.*') ? 'active-nav' : '' }}">
+                                <a href="{{url('admin/publishinghouses')}}" class="nav-link {{ request()->routeIs('publishinghouses.*') ? 'active-nav' : '' }}">
                                     <i class="nav-icon fa-solid fa-house"></i>
                                     <p>
                                         Publishing House
@@ -119,11 +117,19 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="{{url('person')}}" class="nav-link {{ request()->routeIs('person.*') ? 'active-nav' : '' }}">
+                                <a href="{{url('admin/person')}}" class="nav-link {{ request()->routeIs('person.*') ? 'active-nav' : '' }}">
                                     <i class=" nav-icon fa-solid fa-user-plus"></i>
                                     <p>
-                                        Add Person
-                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                        Authorized Person <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="{{url('admin/backup')}}" class="nav-link {{ request()->routeIs('backup.*')  || request()->routeIs('backupShow')  ? 'active-nav' : '' }}">
+                                    <i class=" nav-icon fa-solid fa-trash"></i>
+                                    <p>
+                                        Backup Bin <!-- <span class="right badge badge-danger">New</span> -->
                                     </p>
                                 </a>
                             </li>
@@ -156,7 +162,7 @@
                 @endif
 
                 <main class="py-2">
-                    @yield('authors')
+                    @yield('content')
                 </main>
                 <!-- /.content -->
             </div>
@@ -172,14 +178,7 @@
         </div>
         <!-- ./wrapper -->
 
-        <!-- jQuery -->
-        <script src="../../plugins/jquery/jquery.min.js"></script>
-        <!-- Bootstrap 4 -->
-        <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!-- AdminLTE App -->
-        <script src="../../dist/js/adminlte.min.js"></script>
-        <!-- AdminLTE for demo purposes -->
-        <script src="../../dist/js/demo.js"></script>
+
 
 
 </body>

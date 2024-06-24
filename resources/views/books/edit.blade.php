@@ -1,7 +1,7 @@
-@extends('home')
-@section('authors')
+@extends('layouts/home')
+@section('content')
 
-<form action="{{url('books/'.$books->id)}}" method="POST" class="container" enctype="multipart/form-data">
+<form action="{{url('admin/books/'.$books->id)}}" method="POST" class="container" enctype="multipart/form-data">
     @csrf
     @method("PUT")
     <div class="card ">
@@ -22,7 +22,7 @@
                 <label for="code_number" class="col-md-2 col-form-label offset-md-2">Code Number</label>
 
                 <div class="col-md-6">
-                    <input id="code_number" type="number" class="form-control @error('code_number') is-invalid @enderror" name="code_number" value="{{$books->code_number}}" required autocomplete="code_number" autofocus>
+                    <input id="code_number" type="text" class="form-control @error('code_number') is-invalid @enderror" name="code_number" value="{{$books->code_number}}" required autocomplete="code_number" autofocus>
                     @error('code_number')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -79,9 +79,10 @@
 
                 <div class="col-md-6">
                     <select name="author_id" id="author_id" class="form-control @error('author_id') is-invalid @enderror">
+                        <option value=" {{ $books->author->id }}">{{ $books->author->author_name  }}</option>
 
                         @foreach($authors as $author)
-                        <option value="{{ $author->id }}" {{ old('author_id') == $author->id ? 'selected' : '' }}>{{ $author->author_name }}</option>
+                        <option value=" {{ $author->id }}">{{ $author->author_name }}</option>
                         @endforeach
                     </select>
                     @error('author_id')
@@ -99,6 +100,7 @@
 
                 <div class="col-md-6">
                     <select name="genre_id" id="genre_id" class="form-control @error('genre_id') is-invalid @enderror">
+                        <option value=" {{ $books->genre->id }}">{{ $books->genre->genre_name  }}</option>
 
                         @foreach($genres as $genre)
                         <option value="{{ $genre->id }}" {{ old('genre_id') == $genre->id ? 'selected' : '' }}>{{ $genre->genre_name }}</option>
@@ -119,6 +121,7 @@
 
                 <div class="col-md-6">
                     <select name="publishing_house_id" id="publishing_house_id" class="form-control @error('publishing_house_id') is-invalid @enderror">
+                        <option value=" {{ $books->publishingHouse->id }}">{{ $books->publishingHouse->name  }}</option>
 
                         @foreach($publishinghouses as $publishinghouse)
                         <option value="{{ $publishinghouse->id }}" {{ old('publishing_house_id') == $publishinghouse->id ? 'selected' : '' }}>{{ $publishinghouse->name }}</option>
@@ -175,18 +178,20 @@
                         <strong>{{ $message }}</strong>
                     </span>
                     @enderror
-                    <button type="submit" class="btn btn-primary col-md-5 mt-2">Update</button>
-                    <a href="{{url('books')}}" type="button" class="btn btn-danger col-md-5 mt-2" style='float:right;'>Cancel</a>
                 </div>
             </div>
 
+            <div class="row mb-3">
+                <div class="col-md-6 offset-md-6">
+                    <button type="submit" class="btn btn-primary offset-md-2 col-md-3 mt-2">Update</button>
+                    <a href="{{url('admin/books')}}" type="button" class="btn btn-danger col-md-3 mt-2">Cancel</a>
 
-
+                </div>
+            </div>
         </div>
-    </div>
 </form>
 
 @endsection
-<!-- </body>
 
+<!-- </body>
 </html> -->

@@ -42,13 +42,17 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['name' => 'required']);
-        $request->validate(['email' => 'required']);
-        $request->validate(['password' => 'required']);
-        $request->validate(['phone' => 'required']);
-        $request->validate(['address' => 'required']);
-        $request->validate(['image' => 'required']);
-        $request->validate(['position' => 'required']);
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'image' => 'required',
+            'position' => 'required',
+
+        ]);
+
 
         $imageFileName = auth()->id() . '_' . time() . '.' . $request->file('image')->extension();
         $request->file('image')->move(public_path('images'), $imageFileName);
@@ -67,7 +71,7 @@ class PersonController extends Controller
             ]
 
         );
-        return redirect('person')->with('successAlert', 'You have successfully created! ' . $request->name);
+        return redirect('admin/person')->with('successAlert', 'You have successfully created! ' . $request->name);
     }
 
     /**
@@ -78,7 +82,8 @@ class PersonController extends Controller
      */
     public function show($id)
     {
-        return view('person.detail');
+        $users = User::find($id);
+        return view('person.detail', compact('users'));
     }
 
     /**
@@ -103,40 +108,34 @@ class PersonController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate(['name' => 'required']);
-        $request->validate(['code_number' => 'required']);
-        $request->validate(['price' => 'required']);
-        $request->validate(['publishing_date' => 'required']);
-        $request->validate(['description' => 'required']);
-        $request->validate(['image' => 'required']);
-        $request->validate(['save_pdf' => 'required']);
-        $request->validate(['author_id' => 'required']);
-        $request->validate(['genre_id' => 'required']);
-        $request->validate(['publishing_house_id' => 'required']);
-        $request->validate(['edition' => 'required']);
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            // 'password' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            // 'image' => 'required',
+            'position' => 'required',
 
-        $imageFileName = auth()->id() . '_' . time() . '.' . $request->file('image')->extension();
-        $request->file('image')->move(public_path('images'), $imageFileName);
-
-        $pdfFileName = auth()->id() . '_' . time() . '.' . $request->file('save_pdf')->extension();
-        $request->file('save_pdf')->move(public_path('pdfs'), $pdfFileName);
-
-        person::find($id)->update([
-            'name' => $request->name,
-            'code_number' => $request->code_number,
-            'price' => $request->price,
-            'publishing_date' => $request->publishing_date,
-            'description' => $request->description,
-            'image' => $imageFileName,
-            'save_pdf' => $pdfFileName,
-            'author_id' => $request->author_id,
-            'genre_id' => $request->genre_id,
-            'publishing_house_id' => $request->publishing_house_id,
-            'edition' => $request->edition,
-            'deleted' => 0,
-            'inserted_by' => 0
         ]);
-        return redirect('person')->with('successAlert', 'You have successfully updated!');
+
+        $user = User::find($id);
+        $imageFileName = $user->image;
+        if ($request->hasFile('image')) {
+            $imageFileName = auth()->id() . '_' . time() . '.' . $request->file('image')->extension();
+            $request->file('image')->move(public_path('images'), $imageFileName);
+        }
+
+        User::find($id)->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            // 'password' => Hash::make($request['password']),
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'image' => $imageFileName,
+            'position' => $request->position
+        ]);
+        return redirect('admin/person')->with('successAlert', 'You have successfully updated!');
     }
 
     /**
@@ -148,6 +147,6 @@ class PersonController extends Controller
     public function destroy($id)
     {
         User::find($id)->delete();
-        return redirect('person')->with('successAlert', 'You have successfully deleted! ');
+        return redirect('admin/person')->with('successAlert', 'You have successfully deleted! ');
     }
 }
