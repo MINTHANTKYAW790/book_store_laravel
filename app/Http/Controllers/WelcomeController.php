@@ -1,14 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Books;
 use App\Models\Author;
 use App\Models\Genre;
 use App\Models\PublishingHouse;
 use Illuminate\Support\Facades\Auth;
-
 class WelcomeController extends Controller
 {
     public function index()
@@ -23,14 +21,16 @@ class WelcomeController extends Controller
         $authors = Author::all();
         $genres = Genre::all();
         $publishinghouses = PublishingHouse::all();
-        $books = Books::find($id);
+        $books = Books::where('deleted', 0)->find($id);
         return view('guest.detail', compact('books', 'genres', 'publishinghouses', 'authors'));
     }
 
     public function books()
     {
+
         $books = Books::orderBy('name', 'ASC')->where('deleted', 0)->with(['author', 'genre', 'publishingHouse'])->paginate(10);
         // $books = Books::latest()->paginate(5);
+
         return view('guest.books', compact('books'));
     }
     public function authors()

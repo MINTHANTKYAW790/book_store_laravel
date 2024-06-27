@@ -3,7 +3,9 @@
 
 <h4 class="gridContainerTitle my-4">BOOKS</h4>
 <div class="gridContainer row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5">
-
+    @if($books->isEmpty())
+    <p style="color:black" class="statusIndex pl-4"> There is no books.</p>
+    @else
     @foreach ($books as $book)
     <div class="imageBox ">
         <a href="{{url('guest/detail/'.$book->id)}}">
@@ -19,6 +21,7 @@
         </a>
     </div>
     @endforeach
+    @endif
 </div>
 {{ $books->links() }}
 

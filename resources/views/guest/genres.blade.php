@@ -5,7 +5,10 @@
 <h4 class="booksText">GENRES</h4>
 
 <div class="logInProcess authorPage">
-    <div class=" row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5">
+    @if($genres->isEmpty())
+    <p style="color:black" class="statusIndex pl-4"> There is no genres.</p>
+    @else
+    <div class=" row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3">
 
         @foreach ($genres as $genre)
         <a href='{{url('guest/genrebooks/'.$genre->id)}}' class='card namecard' style='width: 24.5rem; height:4rem;'>
@@ -16,8 +19,9 @@
         @endforeach
 
     </div>
-
+    @endif
 </div>
+
 {{ $genres->links() }}
 
 @endsection

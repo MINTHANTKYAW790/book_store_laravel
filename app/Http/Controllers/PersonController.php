@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Person;
+use App\Models\Position;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -17,7 +18,8 @@ class PersonController extends Controller
      */
     public function index()
     {
-        $users = User::latest()->paginate(5);
+
+        $users = User::orderBy('deleted', 'ASC')->where('deleted', 0)->paginate(10);
         return view('person.index', compact('users'));
     }
 
@@ -28,10 +30,23 @@ class PersonController extends Controller
      */
     public function create()
     {
+        // Check if there is a user with the manager position
+        $managerExists = User::whereHas('positions', function ($query) {
+            $query->where('position_name', 'Manager');
+        })->exists();
+
+        // Fetch positions excluding 'Manager' if a manager already exists
+        if ($managerExists) {
+            $positions = Position::where('position_name', '!=', 'Manager')->get();
+        } else {
+            $positions = Position::all();
+        }
 
 
 
-        return view('person.create');
+
+        // $positions = Position::orderBy('position_name', 'ASC')->get();
+        return view('person.create', compact('positions'));
     }
 
     /**
@@ -44,12 +59,12 @@ class PersonController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-            'phone' => 'required',
-            'address' => 'required',
+            'email' => 'required|email|max:255|unique:users,email',
+            'password' => 'required|string|min:8|confirmed|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*?&#]/',
+            'phone' => 'required|numeric|digits_between:10,15|unique:users,phone',
+            'address' => 'required|string|max:255',
             'image' => 'required',
-            'position' => 'required',
+            'position_id' => 'required',
 
         ]);
 
@@ -65,9 +80,9 @@ class PersonController extends Controller
                 'phone' => $request->phone,
                 'address' => $request->address,
                 'image' => $imageFileName,
-                'position' => $request->position
-
-
+                'position_id' => $request->position_id,
+                'deleted' => 0,
+                'active' => 1
             ]
 
         );
@@ -94,9 +109,9 @@ class PersonController extends Controller
      */
     public function edit($id)
     {
-
+        $positions = Position::orderBy('position_name', 'ASC')->get();
         $users = User::find($id);
-        return view('person.edit', compact('users'));
+        return view('person.edit', compact('users', 'positions'));
     }
 
     /**
@@ -109,13 +124,19 @@ class PersonController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required',
+
+
             // 'password' => 'required',
-            'phone' => 'required',
-            'address' => 'required',
+
             // 'image' => 'required',
-            'position' => 'required',
+
+
+            'name' => 'required',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|numeric|digits_between:10,15',
+            'address' => 'required|string|max:255',
+
+            'position_id' => 'required',
 
         ]);
 
@@ -133,7 +154,7 @@ class PersonController extends Controller
             'phone' => $request->phone,
             'address' => $request->address,
             'image' => $imageFileName,
-            'position' => $request->position
+            'position_id' => $request->position_id
         ]);
         return redirect('admin/person')->with('successAlert', 'You have successfully updated!');
     }
@@ -146,7 +167,22 @@ class PersonController extends Controller
      */
     public function destroy($id)
     {
-        User::find($id)->delete();
-        return redirect('admin/person')->with('successAlert', 'You have successfully deleted! ');
+        // $user = User::find($id);
+
+
+
+        // User::find($id)->update([
+        //     'deleted' => 1,
+        // ]);
+        // return redirect('admin/person')->with('successAlert', 'You have successfully deleted! ' . $user->name);
+        $user = User::find($id);
+
+        if (!$user) {
+            return redirect('admin/person')->with('dangerAlert', 'User not found! ');
+        }
+
+        $user->delete();
+
+        return redirect('admin/person')->with('successAlert', 'You have successfully deleted! ' . $user->name);
     }
 }

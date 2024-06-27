@@ -4,6 +4,9 @@
 <h4 class="booksText">PUBLISHING HOUSES</h4>
 
 <div class="logInProcess authorPage">
+    @if($publishinghouses->isEmpty())
+    <p style="color:black" class="statusIndex pl-4"> There is no publishing houses.</p>
+    @else
     <div class=" row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5">
 
         <?php foreach ($publishinghouses as $publishinghouse) : ?>
@@ -15,7 +18,7 @@
         <?php endforeach; ?>
 
     </div>
-
+    @endif
 </div>
 {{ $publishinghouses->links() }}
 @endsection

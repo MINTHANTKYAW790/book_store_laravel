@@ -26,7 +26,7 @@
                     <th>code_number</th>
                     <th>Created at</th>
                     <th>Inserted By</th>
-                    <th>Action</th>
+                    <th style="width:120px">Action</th>
                 </tr>
 
                 @foreach ($books as $book)
@@ -41,50 +41,23 @@
                     <td>{{$book -> created_at}}</td>
                     <td>{{ $book->user ? $book->user->name : 'something is missing!!!' }}</td>
                     <td>
-                        <form action="{{url('admin/books/'.$book->id)}}" method="POST">
+                        <form id="delete-form-{{$book->id}}" action="{{url('admin/books/'.$book->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <a href="{{url('admin/books/'.$book->id)}}" class=" btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></a>
                             <a href="{{url('admin/books/'.$book->id.'/edit')}}" class="btn btn-success btn-sm"><i class="fa-solid fa-edit"></i></a>
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure want to delete?')"><i class="fa-solid fa-trash"></i></button>
+                            <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete('{{ $book->id }}','{{ $book->name }}')"><i class="fa-solid fa-trash"></i></button>
                         </form>
 
                     </td>
                 </tr>
-
-
-
                 @endforeach
-
-
-
             </table>
             {{ $books->links() }}
-
         </div>
     </div>
 </div>
-<!-- <script>
-    function confirmDelete(bookId) {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById('deleteForm-' + bookId).submit();
-            }
-        });
-    }
-</script> -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-</script>
+<script src="{{asset('javascript/index.js')}}"></script>
 @endsection
-<!-- </body>
-
-</html> -->

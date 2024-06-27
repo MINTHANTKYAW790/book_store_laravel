@@ -55,7 +55,7 @@ class RegisterController extends Controller
             'phone' => ['required', 'string', 'numeric'],
             'address' => ['required', 'string', 'max:255'],
             'image' => ['required', 'string', 'max:255'],
-            'position' => ['required', 'string', 'max:255'],
+            // 'position_id' => ['required', 'string', 'max:255'],
 
         ]);
     }
@@ -79,8 +79,10 @@ class RegisterController extends Controller
             // $file_name = $_FILES['image']['name'],
             // $tempname = $_FILES['image']['tmp_name'],
             // $imgfolder = '../img/' . $file_name,
+            'deleted' => 0,
+            'active' => 1,
             'image' => $data['image'],
-            'position' => $data['position'],
+            'position_id' => $data['position_id'],
         ]);
     }
 }

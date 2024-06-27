@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Word Wise</title>
     <link rel="icon" type="image/x-icon" href="{{asset('images/wordwiseCircle.png')}}">
-
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"> -->
     <!-- Font Awesome -->
     <!-- <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css"> -->
     <!-- Theme style -->
@@ -16,6 +15,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
+    <script src="{{asset('javascript/index.js')}}"></script>
+
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <style>
         .active-nav {
@@ -23,6 +24,7 @@
             background-color: rgba(255, 255, 255, .1) !important;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 
@@ -75,13 +77,13 @@
                         </div>
                     </div>
 
-
+                    <p style="color:white;" class="m-0">Books Functions CRUD</p>
                     <!-- Sidebar Menu -->
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-item">
                                 <a href="{{url('admin/books')}}" class="nav-link {{ request()->routeIs('books.*' )? 'active-nav' : '' }}">
-                                    <i class="nav-icon fa-solid fa-book"></i>
+                                    <i class="nav-icon fa-solid fa-book good"></i>
                                     <p>
                                         Books
                                         <!-- <span class="right badge badge-danger">New</span> -->
@@ -90,7 +92,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="{{url('admin/authors')}}" class="nav-link {{ request()->routeIs('authors.*') ? 'active-nav' : '' }}">
-                                    <i class="nav-icon fa-solid fa-user"></i>
+                                    <i class="nav-icon fa-solid fa-user good"></i>
                                     <p>
                                         Authors
                                         <!-- <span class="right badge badge-danger">New</span> -->
@@ -99,7 +101,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="{{url('admin/genres')}}" class="nav-link {{ request()->routeIs('genres.*') ? 'active-nav' : '' }}">
-                                    <i class="nav-icon fa-solid fa-layer-group "></i>
+                                    <i class="nav-icon fa-solid fa-layer-group good"></i>
                                     <p>
                                         Genres
                                         <!-- <span class="right badge badge-danger">New</span> -->
@@ -108,36 +110,63 @@
                             </li>
                             <li class="nav-item">
                                 <a href="{{url('admin/publishinghouses')}}" class="nav-link {{ request()->routeIs('publishinghouses.*') ? 'active-nav' : '' }}">
-                                    <i class="nav-icon fa-solid fa-house"></i>
+                                    <i class="nav-icon fa-solid fa-house good"></i>
                                     <p>
-                                        Publishing House
+                                        Publishing Houses
                                         <!-- <span class="right badge badge-danger">New</span> -->
                                     </p>
                                 </a>
                             </li>
-
-                            <li class="nav-item">
-                                <a href="{{url('admin/person')}}" class="nav-link {{ request()->routeIs('person.*') ? 'active-nav' : '' }}">
-                                    <i class=" nav-icon fa-solid fa-user-plus"></i>
-                                    <p>
-                                        Authorized Person <!-- <span class="right badge badge-danger">New</span> -->
-                                    </p>
-                                </a>
-                            </li>
-
                             <li class="nav-item">
                                 <a href="{{url('admin/backup')}}" class="nav-link {{ request()->routeIs('backup.*')  || request()->routeIs('backupShow')  ? 'active-nav' : '' }}">
-                                    <i class=" nav-icon fa-solid fa-trash"></i>
+                                    <i class=" nav-icon fa-solid fa-trash bad"></i>
                                     <p>
                                         Backup Bin <!-- <span class="right badge badge-danger">New</span> -->
                                     </p>
                                 </a>
                             </li>
+                            @if(Auth::user()->positions->position_name == "Manager")
+                            <p style="color:white" class="m-0 mt-4">Admin Roles Functions CRUD</p>
+                            <li class="nav-item">
+                                <a href="{{url('admin/positions')}}" class="nav-link {{ request()->routeIs('positions.*') ? 'active-nav' : '' }}">
+                                    <i class=" nav-icon fa-solid fa-users good"></i>
+                                    <p>
+                                        Positions <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+                            @endif
+                            @if(Auth::user()->positions->position_name !== "Manager")
+                            <p style="color:white" class="m-0 mt-4">Admin Roles</p>
+                            @endif
+                            <li class="nav-item">
+                                <a href="{{url('admin/person')}}" class="nav-link {{ request()->routeIs('person.*') ? 'active-nav' : '' }}">
+                                    <i class=" nav-icon fa-solid fa-user-check good"></i>
+                                    <p>
+                                        Authorized Persons <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
 
+
+
+
+                            @if(Auth::user()->positions->position_name == "Manager")
+                            <li class="nav-item">
+                                <a href="{{url('admin/unauthorized')}}" class="nav-link {{ request()->routeIs('unauthorized.*')   ? 'active-nav' : '' }}">
+                                    <i class=" nav-icon fa-solid fa-user-xmark bad"></i>
+                                    <p>
+                                        Unuthorized Persons <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+
+                            @endif
+                            <p style="color:white" class="m-0 mt-4">Logout</p>
                             <li class="nav-item logoutButton">
                                 <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    <i class="nav-icon fa-solid fa-right-from-bracket"></i>
+                                    <i class="nav-icon fa-solid fa-right-from-bracket bad"></i>
                                     <p>Logout</p>
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

@@ -10,6 +10,11 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\PublishingHouseController;
 use App\Http\Controllers\PersonController;
 
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\PositionController;
+use App\Http\Controllers\UnauthorizedPerson;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +38,15 @@ Route::middleware('auth')->group(function () {
     Route::resource('admin/books', BookController::class)->name('*', 'admin_books');
     Route::resource('admin/person', PersonController::class)->name('*', 'admin_person');
     Route::resource('admin/backup', BackupBinController::class)->name('*', 'admin_backup');
+    Route::resource('admin/unauthorized', UnauthorizedPerson::class)->name('*', 'admin_unauthorized');
+    Route::resource('admin/positions', PositionController::class)->name('*', 'admin_positions');
 });
+// Explicitly define only the necessary routes for authentication
+// Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+// Route::post('login', [LoginController::class, 'login']);
+// Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+// Route::post('register', [RegisterController::class, 'register'])->name('register');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -47,3 +60,9 @@ Route::get('/guest/authors', [App\Http\Controllers\WelcomeController::class, 'au
 Route::get('/guest/genres', [App\Http\Controllers\WelcomeController::class, 'genres'])->name('ugenres');
 Route::get('/guest/publishinghouses', [App\Http\Controllers\WelcomeController::class, 'publishinghouses'])->name('upublishinghouses');
 Route::get('/search', [App\Http\Controllers\WelcomeController::class, 'search'])->name('search');
+// Password Reset Routes
+Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+Route::get('/send-test-email', 'EmailController@sendTestEmail');

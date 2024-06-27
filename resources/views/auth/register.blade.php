@@ -11,7 +11,7 @@
 </head>
 
 <body class="hold-transition sidebar-mini">
-
+    {{ var_dump($errors->all()) }}
 
 
     <div class="container pt-4">
@@ -117,12 +117,12 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="position" class="col-md-4 col-form-label text-md-end">{{ __('Position') }}</label>
+                                <label for="position_id" class="col-md-4 col-form-label text-md-end">{{ __('Position_id') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="position" type="position" class="form-control @error('position') is-invalid @enderror" name="position" required autocomplete="new-position">
+                                    <input id="position_id" type="position_id" class="form-control @error('position_id') is-invalid @enderror" name="position_id" required autocomplete="new-position_id">
 
-                                    @error('position')
+                                    @error('position_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

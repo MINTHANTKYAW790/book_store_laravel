@@ -21,9 +21,11 @@ return new class extends Migration
             $table->string('phone', "45")->unique();
             $table->string('address', "45");
             $table->string('image', "45");
-            $table->string('position', "45");
+            $table->string('position_id');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('deleted', "10");
+            $table->string('active', "10");
             $table->rememberToken();
             $table->timestamps();
         });

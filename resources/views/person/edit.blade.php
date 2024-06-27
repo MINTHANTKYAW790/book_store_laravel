@@ -9,6 +9,7 @@
     @csrf
     @method("PUT")
     <div class="card ">
+
         <div class="cardbody mt-3 ml-3">
             {{ var_dump($errors->all()) }}
             <h3 class="mb-4">Edit Authourized Person</h3>
@@ -85,6 +86,7 @@
                     <input id="address" type="address" class="form-control @error('address') is-invalid @enderror" name="address" required autocomplete="new-address" value="{{ $users->address}}">
 
                     @error('address')
+
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -106,18 +108,24 @@
                 </div>
             </div>
 
+
+            <!-- Position ID -->
             <div class="row mb-3">
-                <label for="position" class="col-md-2 col-form-label offset-md-2">{{ __('Position') }}</label>
+                <label for="position_id" class="col-md-2 col-form-label offset-md-2">Position Name</label>
 
                 <div class="col-md-6">
-                    <input id="position" type="position" class="form-control @error('position') is-invalid @enderror" name="position" required autocomplete="new-position" value="{{ $users->position}}">
+                    <select name="position_id" id="position_id" class="form-control @error('position_id') is-invalid @enderror">
+                        <option value=" {{ $users->positions->id }}">{{ $users->positions->position_name  }}</option>
 
-                    @error('position')
+                        @foreach($positions as $position)
+                        <option value=" {{ $position->id }}">{{ $position->position_name }}</option>
+                        @endforeach
+                    </select>
+                    @error('position_id')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                     @enderror
-
                 </div>
             </div>
 

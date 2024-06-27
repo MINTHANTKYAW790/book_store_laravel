@@ -19,8 +19,11 @@ class BackupBinController extends Controller
      */
     public function index()
     {
-        $books = Books::latest()->where('deleted', 1)->with(['author', 'genre', 'publishingHouse', 'user'])->paginate(6);
-        // $books = Books::latest()->paginate(5);
+        // $books = Books::latest()->where('deleted', 1)->with(['author', 'genre', 'publishingHouse', 'user'])->paginate(6);
+        // // $books = Books::latest()->paginate(5);
+        // return view('backup.index', compact('books'));
+        $books = Books::onlyTrashed()->paginate(6);
+
         return view('backup.index', compact('books'));
     }
 
@@ -53,11 +56,12 @@ class BackupBinController extends Controller
      */
     public function show($id)
     {
-        $authors = Author::all();
-        $genres = Genre::all();
-        $publishingHouses = PublishingHouse::all();
-        $books = Books::find($id);
-        return view('backup.detail', compact('books', 'genres', 'publishingHouses', 'authors'));
+        // $authors = Author::all();
+        // $genres = Genre::all();
+        // $publishingHouses = PublishingHouse::all();
+        // $books = Books::find($id);
+        // return view('backup.detail', compact('books', 'genres', 'publishingHouses', 'authors'));
+
     }
 
     /**
@@ -91,10 +95,21 @@ class BackupBinController extends Controller
      */
     public function destroy($id)
     {
-        Books::find($id)->update([
-            'deleted' => 0,
-            'inserted_by' => auth()->user()->id
-        ]);
-        return redirect('admin/backup')->with('successAlert', 'You have successfully restored! ');
+        // $books = Books::find($id);
+        // Books::find($id)->update([
+        //     'deleted' => 0,
+        //     'inserted_by' => auth()->user()->id
+        // ]);
+        // return redirect('admin/backup')->with('successAlert', 'You have successfully restored! ' . $books->name);
+
+        $books = Books::withTrashed()->find($id);
+
+        if (!$books) {
+            return redirect('admin/backup')->with('dangerAlert', 'You have successfully restored! ');
+        }
+
+        $books->restore();
+
+        return redirect('admin/backup')->with('successAlert', 'You have successfully restored! ' . $books->name);
     }
 }

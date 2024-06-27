@@ -80,10 +80,9 @@
                 <label for="author_id" class="col-md-2 col-form-label offset-md-2">Author Name</label>
 
                 <div class="col-md-6">
-                    <select name="author_id" id="author_id" class="form-control @error('author_id') is-invalid @enderror">
-                        <option>Choose Author ...</option>
+                    <select name="author_id" id="author_id" class="form-control @error('author_id') is-invalid @enderror required" required>
                         @foreach($authors as $author)
-                        <option value="{{ $author->id }}" {{ old('author_id') == $author->id ? 'selected' : '' }}>{{ $author->author_name }}</option>
+                        <option name="author_id" value="{{ $author->id }}" {{ old('author_id') == $author->id ? 'selected' : '' }} required id="author_id">{{ $author->author_name }}</option>
                         @endforeach
                     </select>
                     @error('author_id')
@@ -95,13 +94,13 @@
             </div>
 
 
+
             <!-- Genre ID -->
             <div class="row mb-3">
                 <label for="genre_id" class="col-md-2 col-form-label offset-md-2">Genre </label>
 
                 <div class="col-md-6">
                     <select name="genre_id" id="genre_id" class="form-control @error('genre_id') is-invalid @enderror" required>
-                        <option>Choose Genre ...</option>
                         @foreach($genres as $genre)
                         <option value="{{ $genre->id }}" {{ old('genre_id') == $genre->id ? 'selected' : ''  }} name="genre_id" id="genre_id" class="form-control @error('genre_id') is-invalid @enderror" required>{{ $genre->genre_name }}</option>
                         @endforeach
@@ -121,7 +120,6 @@
 
                 <div class="col-md-6">
                     <select name="publishing_house_id" id="publishing_house_id" class="form-control @error('publishing_house_id') is-invalid @enderror" required>
-                        <option>Choose Publishing House ...</option>
                         @foreach($publishinghouses as $publishinghouse)
                         <option value="{{ $publishinghouse->id }}" {{ old('publishing_house_id') == $publishinghouse->id ? 'selected' : '' }} required>{{ $publishinghouse->name }}</option>
                         @endforeach

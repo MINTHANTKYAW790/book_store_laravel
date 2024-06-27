@@ -40,14 +40,26 @@
                     <td>{{$person -> email}}</td>
                     <td>{{$person -> phone}}</td>
                     <td>{{$person -> address}}</td>
-                    <td>{{$person -> position}}</td>
+                    <td>{{$person->positions ? $person->positions->position_name : 'something is missing!!!' }}</td>
                     <td>
-                        <form action="{{url('admin/person/'.$person->id)}}" method="POST">
+                        <form id="delete-form-{{$person->id}}" action="{{url('admin/person/'.$person->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <a href="{{url('admin/person/'.$person->id)}}" class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></a>
-                            <a href="{{url('admin/person/'.$person->id.'/edit')}}" class="btn btn-success btn-sm"><i class="fa-solid fa-edit"></i></a>
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure want to delete?')"><i class="fa-solid fa-trash"></i></button>
+
+                            @if(Auth::user()->id == $person->id)
+                            <a href="{{url('admin/person/'.$person->id.'/edit')}}" class="btn btn-primary btn-sm"><i class="fa-solid fa-edit"></i></a>
+                            @else
+                            @if(Auth::user()->positions->position_name == "Manager")
+
+                            <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete('{{ $person->id }}','{{ $person->name }}')"><i class="fa-solid fa-trash"></i></button>
+
+                            @endif
+
+
+                            @endif
+
+
                         </form>
 
                     </td>
@@ -63,10 +75,7 @@
         </div>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+
 
 </script>
 @endsection
-<!-- </body>
-
-</html> -->

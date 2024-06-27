@@ -1,21 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="{{asset('images/wordwiseCircle.png')}}">
-
-    <title>Word Wise</title>
-
-
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-
-</head>
+@section('content')
 
 <body class="hold-transition sidebar-mini">
 
-    <div class="container loginbc" style="padding-top:10%;">
+    <div class="container loginbc">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -41,17 +30,25 @@
 
                             <div class="row mb-3">
                                 <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                    <div class="input-group mb-3">
+                                        <input id="password" type="password" class="form-control mr-0 @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" aria-label="Recipient's username" aria-describedby="basic-addon2">
 
-                                    @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+                                        <div class="input-group-append">
+                                            <span class="input-group-text " onclick="togglePassword()">
+                                                <i id="toggleIcon" class="fa fa-eye"></i> <!-- Added icon here -->
+                                            </span>
+                                        </div>
+                                        @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
+
+
 
                             <!-- <div class="row mb-3">
                                 <div class="col-md-6 offset-md-4">
@@ -66,13 +63,27 @@
                             </div> -->
 
 
-                            <div class="row mb-2">
-                                <div class="col-md-3 offset-md-8" style="width:100%">
+
+                            <div class="row mb-3">
+
+                                <div class=" col-md-4 offset-md-4">
+                                    @if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
+                                    @endif
+                                </div>
+                                <div class="col-md-3 offset-md-1">
                                     <button type="submit" class="btn btn-primary ">
                                         {{ __('Login') }}
                                     </button>
                                 </div>
+
                             </div>
+
+
+
+
                         </form>
                     </div>
 
@@ -84,5 +95,4 @@
     </div>
     </div>
 </body>
-
-</html>
+@endsection

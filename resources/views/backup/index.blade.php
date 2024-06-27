@@ -1,4 +1,4 @@
-@extends('layouts/home')
+@extends('layouts.home')
 @section('content')
 <div class="container">
     <div class="card">
@@ -41,12 +41,12 @@
                     <td>{{ $book->user ? $book->user->name : 'something is missing!!!' }}</td>
                     <td>
 
-                        <form action="{{url('admin/backup/'.$book->id)}}" method="POST" enctype="multipart/form-data">
+                        <form id="restore-form-{{$book->id}}" action="{{url('admin/backup/'.$book->id)}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('DELETE')
                             <a href="{{url('admin/backup/'.$book->id)}}" class=" btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></a>
 
-                            <button type="submit" class="btn btn-primary btn-sm" onclick="return confirm('Are you sure want to restore {{$book -> name}}?')"><i class="fa-solid fa-arrows-spin"></i></button>
+                            <button type="button" class="btn btn-primary btn-sm" onclick="confirmRestore('{{ $book->id }}','{{ $book->name }}')"><i class="fa-solid fa-arrows-spin"></i></button>
                         </form>
 
                     </td>
@@ -65,9 +65,7 @@
         </div>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
 
-</script>
 @endsection
 <!-- </body>
 

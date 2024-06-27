@@ -78,8 +78,8 @@ class PublishingHouseController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate(['name' => 'required']);
-        PublishingHouse::find($id)->update(['name' => $request->name]);
-        return redirect('admin/publishinghouses')->with('successAlert', 'You have successfully updated!');
+        $publishinghouses = PublishingHouse::find($id)->update(['name' => $request->name]);
+        return redirect('admin/publishinghouses')->with('successAlert', 'You have successfully updated! ');
     }
 
     /**

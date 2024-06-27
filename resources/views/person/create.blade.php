@@ -8,8 +8,6 @@
             <!-- {{ var_dump($errors->all()) }} -->
             <h3 class="mb-4">Create New Authourized Person</h3>
             <!-- Name -->
-
-
             <div class="row mb-3">
                 <label for="name" class="col-md-2 col-form-label offset-md-2">{{ __('Name') }}</label>
 
@@ -42,13 +40,19 @@
                 <label for="password" class="col-md-2 col-form-label offset-md-2">{{ __('Password') }}</label>
 
                 <div class="col-md-6">
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Enter Password">
-
-                    @error('password')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
+                    <div class="input-group mb-3">
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Enter Password">
+                        <div class="input-group-append">
+                            <span class="input-group-text " onclick="togglePassword()">
+                                <i id="toggleIcon" class="fa fa-eye"></i> <!-- Added icon here -->
+                            </span>
+                        </div>
+                        @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
                 </div>
             </div>
 
@@ -56,7 +60,14 @@
                 <label for="password-confirm" class="col-md-2 col-form-label offset-md-2">{{ __('Confirm Password') }}</label>
 
                 <div class="col-md-6">
-                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
+                    <div class="input-group mb-3">
+                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
+                        <div class="input-group-append">
+                            <span class="input-group-text " onclick="togglePassword1()">
+                                <i id="toggleIcon1" class="fa fa-eye"></i> <!-- Added icon here -->
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -102,15 +113,19 @@
                 </div>
             </div>
 
+            <!-- Author ID -->
             <div class="row mb-3">
-                <label for="position" class="col-md-2 col-form-label offset-md-2">{{ __('Position') }}</label>
+                <label for="position_id" class="col-md-2 col-form-label offset-md-2">Position Name</label>
 
                 <div class="col-md-6">
-                    <input id="position" type="position" class="form-control @error('position') is-invalid @enderror" name="position" required autocomplete="new-posi0tion" placeholder="Enter Position">
-
-                    @error('position')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                    <select name="position_id" id="position_id" class="form-control @error('position_id') is-invalid @enderror required" required>
+                        @foreach($positions as $position)
+                        <option name="position_id" value="{{ $position->id }}" {{ old('position_id') == $position->id ? 'selected' : '' }} required id="position_id">{{ $position->position_name }}</option>
+                        @endforeach
+                    </select>
+                    @error('position_id')
+                    <span class="invalid-feedback">
+                        {{ $message }}
                     </span>
                     @enderror
                 </div>
@@ -131,7 +146,6 @@
         </div>
     </div>
 </form>
-@endsection
-<!-- </body>
 
-</html> -->
+
+@endsection

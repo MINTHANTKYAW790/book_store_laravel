@@ -19,10 +19,14 @@ class BookController extends Controller
      */
 
     public function index()
+
+
     {
         $limit = 10;
         $books = Books::latest()->where('deleted', 0)->take($limit)->with(['author', 'genre', 'publishingHouse', 'user'])->paginate(10);
         // $books = Books::latest()->paginate(5);
+
+
         return view('books.index', compact('books'));
     }
 
@@ -201,10 +205,20 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        Books::find($id)->update([
-            'deleted' => 1,
-            'inserted_by' => auth()->user()->id
-        ]);
-        return redirect('admin/books')->with('successAlert', 'You have successfully deleted! ');
+        // $books = Books::find($id);
+        // Books::find($id)->update([
+        //     'deleted' => 1,
+        //     'inserted_by' => auth()->user()->id
+        // ]);
+        // return redirect('admin/books')->with('successAlert', 'You have successfully deleted! ' . $books->name);
+        $books = Books::find($id);
+
+        if (!$books) {
+            return redirect('admin/books')->with('dangerAlert', 'Books not found! ');
+        }
+
+        $books->delete();
+
+        return redirect('admin/books')->with('successAlert', 'You have successfully deleted! ' . $books->name);
     }
 }
