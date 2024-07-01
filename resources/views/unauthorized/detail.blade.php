@@ -8,7 +8,7 @@
             <!-- {{ var_dump($errors->all()) }} -->
             <div class="row">
                 <div class="col-sm-6">
-                    <h4>Authorized Person / {{$users -> name}}</h4>
+                    <h4>Authorized Person / {{$user -> name}}</h4>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right mr-3">
@@ -23,7 +23,7 @@
                     <!-- Image -->
                     <div class="row mb-3">
                         <div class="imageContainer" style="width: 30%;">
-                            <img src="{{asset('images/' . $users -> image)}}" alt="image" width=" 322px" height="445px">
+                            <img src="{{asset('images/' . $user -> image)}}" alt="image" width=" 322px" height="445px">
                         </div>
                     </div>
 
@@ -34,31 +34,31 @@
 
                     <div class="row mb-3">
                         <label for="name" class="col-md-6 col-form-label ">Name </label>
-                        <label class="col-md-6 col-form-label ">: &nbsp {{$users->name}}</label>
+                        <label class="col-md-6 col-form-label ">: &nbsp {{$user->name}}</label>
                     </div>
 
                     <!-- Email -->
                     <div class="row mb-3">
                         <label for="email" class="col-md-6 col-form-label ">Email</label>
-                        <label class="col-md-6 col-form-label ">: &nbsp {{$users->email}}</label>
+                        <label class="col-md-6 col-form-label ">: &nbsp {{$user->email}}</label>
                     </div>
 
                     <!-- Phone Number -->
                     <div class="row mb-3">
                         <label for="phone" class="col-md-6 col-form-label ">Phone Number</label>
-                        <label class="col-md-6 col-form-label ">: &nbsp {{$users->phone}}</label>
+                        <label class="col-md-6 col-form-label ">: &nbsp {{$user->phone}}</label>
                     </div>
 
                     <!-- Address -->
                     <div class="row mb-3">
                         <label for="address" class="col-md-6 col-form-label ">Address</label>
-                        <label class="col-md-6 col-form-label ">: &nbsp {{$users->address}}</label>
+                        <label class="col-md-6 col-form-label ">: &nbsp {{$user->address}}</label>
                     </div>
 
                     <!-- Position -->
                     <div class="row mb-3">
                         <label for="position" class="col-md-6 col-form-label ">Position</label>
-                        <label class="col-md-6 col-form-label ">: &nbsp {{$users->position}}</label>
+                        <label class="col-md-6 col-form-label ">: &nbsp {{$user->position}}</label>
                     </div>
                 </div>
             </div>

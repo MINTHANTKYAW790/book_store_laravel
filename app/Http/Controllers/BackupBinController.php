@@ -61,7 +61,8 @@ class BackupBinController extends Controller
         // $publishingHouses = PublishingHouse::all();
         // $books = Books::find($id);
         // return view('backup.detail', compact('books', 'genres', 'publishingHouses', 'authors'));
-
+        $book = Books::withTrashed()->find($id);
+        return view('backup.detail', compact('book'));
     }
 
     /**

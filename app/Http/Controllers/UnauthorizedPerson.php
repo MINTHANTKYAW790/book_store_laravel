@@ -54,8 +54,8 @@ class UnauthorizedPerson extends Controller
      */
     public function show($id)
     {
-        $users = User::find($id);
-        return view('unauthorized.detail', compact('users'));
+        $user = User::onlyTrashed()->find($id);
+        return view('unauthorized.detail', compact('user'));
     }
 
     /**
@@ -103,5 +103,5 @@ class UnauthorizedPerson extends Controller
         $user->restore();
 
         return redirect('admin/unauthorized')->with('successAlert', 'You have successfully restored! ' . $user->name);
-    } 
+    }
 }

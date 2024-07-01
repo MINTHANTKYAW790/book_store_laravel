@@ -2,7 +2,16 @@
 @section('guestContent')
 
 
-<h4 class='booksText'>PUBLISHING HOUSES / {{$publishing_houses->name}}</h4>";
+<div class="row gridContainerTitle my-4" style="height:25.91px">
+    <div class="col-sm-6 m-0 p-0">
+        <h4>PUBLISHING HOUSES / {{$publishing_houses->name}}</h4>
+    </div>
+    <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <a href="{{url('guest/publishinghouses/')}}" class="btn btn-primary btn-sm  "><i class="fa-solid fa-arrow-left"></i> Back</a>
+        </ol>
+    </div>
+</div>
 
 
 
@@ -21,7 +30,7 @@
         <a href='{{url('guest/detail/'.$book->id)}}'>
 
             <img class="imageImageBox" src="{{asset('images/' . $book -> image)}}" alt="image" height="309px" width="224px" />
-            <div class=' title'><i class='fa-solid fa-magnifying-glass'></i>
+            <div class=' title1'><i class='fa-solid fa-eye'></i>
             </div>
 
             <p style='color:black' class='statusIndex'>{{$book->name}}</p>

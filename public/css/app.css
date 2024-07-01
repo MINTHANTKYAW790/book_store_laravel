@@ -193,10 +193,16 @@ p {
     padding-left: 5%;
     font-size: large;
 }
-
+.card {
+    margin-right: 1%;
+}
 .imageBox {
     position: relative;
     margin: 1% 0;
+}
+.imageScale {
+    width: 190px;
+    height: 270px;
 }
 
 .title:hover,
@@ -215,6 +221,36 @@ p {
     height: 0;
     transition: height 1s !important;
     top: 38%;
+    left: 50.5%;
+    font-family: "Times New Roman", Times, serif;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+    /* -webkit-text-stroke: 1px #fff;
+
+    background-image: linear-gradient(#fff, #fff);
+    background-repeat: no-repeat;
+    -webkit-background-clip: background-color;
+    background-position: -750px 0; */
+    animation: 10s linear infinite alternate;
+    animation-delay: 10s;
+}
+
+.title1:hover,
+.imageImageBox:hover + .title1 {
+    display: block !important;
+    height: 309px;
+    color: #db5e04;
+}
+
+.title1 {
+    position: absolute;
+    background-color: white;
+    color: transparent;
+    opacity: 0.8;
+    width: 224px;
+    height: 0;
+    transition: height 1s !important;
+    top: 43.9%;
     left: 50.5%;
     font-family: "Times New Roman", Times, serif;
     transform: translate(-50%, -50%);
@@ -325,7 +361,7 @@ p {
 .gridContainerTitle {
     width: 90%;
     margin: 0 auto;
-    padding-left: 2%;
+
     color: #db5e04;
 }
 
@@ -361,8 +397,7 @@ p {
 }
 
 .detailContainer {
-    padding: 3% 0;
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
 }
 
@@ -480,7 +515,7 @@ p {
 .booksText {
     width: 90%;
     margin: 0 auto;
-    padding: 1% 1.5%;
+    padding: 1% 0;
     color: #db5e04;
 }
 
@@ -494,7 +529,7 @@ p {
     background-color: #db5e04;
     color: white;
     width: 250px;
-    height: 250px;
+    height: 280px;
 
     overflow: hidden !important;
     border-radius: 20px;
@@ -515,10 +550,16 @@ p {
     box-shadow: 0 10px #c9bcbc;
     transition-duration: 0.2s;
 }
-
+/* 
 .card-body {
     overflow: hidden;
-    width: 300px;
+    width: 190px;
+    height: 57px;
+} */
+
+.card-title {
+    overflow: hidden;
+    height: 40px;
 }
 
 .ui-menu-item-wrapper,
@@ -546,4 +587,5 @@ p {
 .logoutButton {
     margin-top: 200px !important;
 }
+
 /* </style> */
