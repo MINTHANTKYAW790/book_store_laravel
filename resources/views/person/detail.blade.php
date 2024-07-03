@@ -58,7 +58,11 @@
                     <!-- Position -->
                     <div class="row mb-3">
                         <label for="position" class="col-md-6 col-form-label ">Position</label>
-                        <label class="col-md-6 col-form-label ">: &nbsp {{$users->position}}</label>
+                        <label class="col-md-6 col-form-label ">: @if(!empty($users->getRoleNames()))
+                            @foreach($users->getRoleNames() as $v)
+                            {{ $v }}
+                            @endforeach
+                            @endif</label>
                     </div>
                 </div>
             </div>

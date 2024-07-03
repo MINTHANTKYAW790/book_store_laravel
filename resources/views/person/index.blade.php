@@ -40,24 +40,26 @@
                     <td>{{$person -> email}}</td>
                     <td>{{$person -> phone}}</td>
                     <td>{{$person -> address}}</td>
-                    <td>{{$person->positions ? $person->positions->position_name : 'something is missing!!!' }}</td>
+                    <td>
+                        @if(!empty($person->getRoleNames()))
+                        @foreach($person->getRoleNames() as $v)
+                        {{ $v }}
+                        @endforeach
+                        @endif
+                    </td>
+
                     <td>
                         <form id="delete-form-{{$person->id}}" action="{{url('admin/person/'.$person->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <a href="{{url('admin/person/'.$person->id)}}" class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></a>
 
-                            @if(Auth::user()->id == $person->id)
+
                             <a href="{{url('admin/person/'.$person->id.'/edit')}}" class="btn btn-primary btn-sm"><i class="fa-solid fa-edit"></i></a>
-                            @else
-                            @if(Auth::user()->positions->position_name == "Manager")
 
                             <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete('{{ $person->id }}','{{ $person->name }}')"><i class="fa-solid fa-trash"></i></button>
 
-                            @endif
 
-
-                            @endif
 
 
                         </form>

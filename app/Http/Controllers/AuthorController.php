@@ -12,6 +12,13 @@ class AuthorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    function __construct()
+    {
+        $this->middleware(['permission:author-list|author-create|author-edit'], ['only' => ['index', 'store']]);
+        $this->middleware(['permission:author-create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:author-edit'], ['only' => ['edit', 'update']]);
+    }
     public function index()
     {
         $authors = Author::latest()->paginate(10);

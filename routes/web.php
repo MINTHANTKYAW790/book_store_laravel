@@ -15,6 +15,9 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\UnauthorizedPerson;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,18 +39,23 @@ Route::middleware('auth')->group(function () {
     Route::resource('admin/genres', GenreController::class)->name('*', 'admin_genres');
     Route::resource('admin/publishinghouses', PublishingHouseController::class)->name('*', 'admin_publishinghouses');
     Route::resource('admin/books', BookController::class)->name('*', 'admin_books');
-    Route::resource('admin/person', PersonController::class)->name('*', 'admin_person');
+    Route::resource('admin/person', UserController::class)->name('*', 'admin_person');
     Route::resource('admin/backup', BackupBinController::class)->name('*', 'admin_backup');
     Route::resource('admin/unauthorized', UnauthorizedPerson::class)->name('*', 'admin_unauthorized');
     Route::resource('admin/positions', PositionController::class)->name('*', 'admin_positions');
+
+    // Our resource routes
+    Route::resource('admin/roles', RoleController::class);
+    Route::resource('users', UserController::class);
+    Route::resource('products', ProductController::class);
 });
 // Explicitly define only the necessary routes for authentication
-// Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
-// Route::post('login', [LoginController::class, 'login']);
-// Route::post('logout', [LoginController::class, 'logout'])->name('logout');
-// Route::post('register', [RegisterController::class, 'register'])->name('register');
+Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('login', [LoginController::class, 'login']);
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('register', [RegisterController::class, 'register'])->name('register');
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');

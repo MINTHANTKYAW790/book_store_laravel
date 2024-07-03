@@ -109,25 +109,36 @@
             </div>
 
 
-            <!-- Position ID -->
+            <!-- Role -->
             <div class="row mb-3">
-                <label for="position_id" class="col-md-2 col-form-label offset-md-2">Position Name</label>
-
+                <label for="role" class="col-md-2 col-form-label offset-md-2">Position Name</label>
                 <div class="col-md-6">
-                    <select name="position_id" id="position_id" class="form-control @error('position_id') is-invalid @enderror">
-                        <option value=" {{ $users->positions->id }}">{{ $users->positions->position_name  }}</option>
+                    <select multiple name="roles[]" id="role" class="form-control multiple @error('role') is-invalid @enderror">
 
-                        @foreach($positions as $position)
-                        <option value=" {{ $position->id }}">{{ $position->position_name }}</option>
+                        @foreach($roles as $role)
+                        <option value="{{ $role }}">
+                            {{ $role }}
+                        </option>
                         @endforeach
                     </select>
-                    @error('position_id')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                    @error('role')
+                    <span class="invalid-feedback">
+                        {{ $message }}
                     </span>
                     @enderror
                 </div>
             </div>
+
+            <!-- <div class="col-xs-12 mb-3">
+                <div class="form-group">
+                    <strong>Role:</strong>
+                    <select class="form-control multiple" multiple name="roles[]">
+                        @foreach ($roles as $role)
+                        <option value="{{ $role }}">{{ $role }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div> -->
 
             <div class="row mb-3">
                 <div class="col-md-6 offset-md-6">

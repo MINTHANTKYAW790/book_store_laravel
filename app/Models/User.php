@@ -10,10 +10,12 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Auth\Passwords\CanResetPassword as ResetPasswordTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements CanResetPassword
 {
-    use HasApiTokens, HasFactory, Notifiable, ResetPasswordTrait;
+    use HasApiTokens, HasFactory, Notifiable, ResetPasswordTrait, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -27,9 +29,10 @@ class User extends Authenticatable implements CanResetPassword
         'phone',
         'address',
         'image',
-        'position_id',
-        'deleted',
-        'active',
+
+
+
+
 
     ];
 
@@ -52,13 +55,15 @@ class User extends Authenticatable implements CanResetPassword
     protected $casts = [
         'email_verified_at' => 'datetime',
         'deleted_at' => 'datetime',
+
     ];
     public function books()
     {
         return $this->hasMany(Books::class);
     }
+
     public function positions()
     {
-        return $this->belongsTo(Position::class, 'position_id');
+        return $this->belongsTo(Role::class, 'position_id');
     }
 }

@@ -39,7 +39,13 @@
                     <td>{{$person -> email}}</td>
                     <td>{{$person -> phone}}</td>
                     <td>{{$person -> address}}</td>
-                    <td>{{$person->positions -> position_name}}</td>
+                    <td>
+                        @if(!empty($person->getRoleNames()))
+                        @foreach($person->getRoleNames() as $v)
+                        {{ $v }}
+                        @endforeach
+                        @endif
+                    </td>
                     <td>
                         <form id="restore-form-{{$person->id}}" action="{{url('admin/unauthorized/'.$person->id)}}" method="POST">
                             @csrf

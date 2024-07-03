@@ -16,6 +16,14 @@ class UnauthorizedPerson extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    function __construct()
+    {
+        $this->middleware(['permission:unauthorized-list|unauthorized-create|unauthorized-edit'], ['only' => ['index', 'store']]);
+        $this->middleware(['permission:unauthorized-create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:unauthorized-edit'], ['only' => ['edit', 'update']]);
+    }
+
     public function index()
     {
         // $users = User::orderBy('deleted', 'ASC')->where('deleted', 1)->paginate(10);

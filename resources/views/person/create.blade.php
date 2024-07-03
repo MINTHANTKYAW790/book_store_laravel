@@ -5,7 +5,7 @@
     {{csrf_field()}}
     <div class="card ">
         <div class="cardbody mt-3 ml-3">
-            <!-- {{ var_dump($errors->all()) }} -->
+            {{ var_dump($errors->all()) }}
             <h3 class="mb-4">Create New Authourized Person</h3>
             <!-- Name -->
             <div class="row mb-3">
@@ -113,17 +113,19 @@
                 </div>
             </div>
 
-            <!-- Author ID -->
+            <!-- Role -->
             <div class="row mb-3">
-                <label for="position_id" class="col-md-2 col-form-label offset-md-2">Position Name</label>
-
+                <label for="role" class="col-md-2 col-form-label offset-md-2">Position Name</label>
                 <div class="col-md-6">
-                    <select name="position_id" id="position_id" class="form-control @error('position_id') is-invalid @enderror required" required>
-                        @foreach($positions as $position)
-                        <option name="position_id" value="{{ $position->id }}" {{ old('position_id') == $position->id ? 'selected' : '' }} required id="position_id">{{ $position->position_name }}</option>
+                    <select multiple name="roles[]" id="role" class="form-control multiple @error('role') is-invalid @enderror" required>
+
+                        @foreach($roles as $role)
+                        <option value="{{ $role }}">
+                            {{ $role }}
+                        </option>
                         @endforeach
                     </select>
-                    @error('position_id')
+                    @error('role')
                     <span class="invalid-feedback">
                         {{ $message }}
                     </span>
@@ -131,18 +133,23 @@
                 </div>
             </div>
 
+            <!-- <div class="col-xs-12 mb-3">
+                <div class="form-group">
+                    <strong>Role:</strong>
+                    <select class="form-control multiple" multiple name="roles[]">
+                        @foreach ($roles as $role)
+                        <option value="{{ $role }}">{{ $role }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div> -->
+
             <div class="row mb-3">
                 <div class="col-md-6 offset-md-6">
                     <button type="submit" class="btn btn-primary offset-md-2 col-md-3 mt-2">Create</button>
                     <a href="{{url('admin/person')}}" type="button" class="btn btn-danger col-md-3 mt-2">Cancel</a>
                 </div>
             </div>
-
-
-
-
-
-
         </div>
     </div>
 </form>

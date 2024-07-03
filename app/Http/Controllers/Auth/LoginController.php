@@ -42,6 +42,6 @@ class LoginController extends Controller
     }
     protected function credentials(Request $request)
     {
-        return array_merge($request->only($this->username(), 'password'), ['deleted' => 0]);
+        return array_merge($request->only($this->username(), 'password'));
     }
 }

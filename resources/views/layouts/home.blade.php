@@ -125,20 +125,17 @@
                                     </p>
                                 </a>
                             </li>
-                            @if(Auth::user()->positions->position_name == "Manager")
                             <p style="color:white" class="m-0 mt-4">Admin Roles Functions CRUD</p>
+
                             <li class="nav-item">
-                                <a href="{{url('admin/positions')}}" class="nav-link {{ request()->routeIs('positions.*') ? 'active-nav' : '' }}">
+                                <a href="{{url('admin/roles')}}" class="nav-link {{ request()->routeIs('unauthorized.*')   ? 'active-nav' : '' }}">
                                     <i class=" nav-icon fa-solid fa-users good"></i>
                                     <p>
-                                        Positions <!-- <span class="right badge badge-danger">New</span> -->
+                                        Manage Roles <!-- <span class="right badge badge-danger">New</span> -->
                                     </p>
                                 </a>
                             </li>
-                            @endif
-                            @if(Auth::user()->positions->position_name !== "Manager")
                             <p style="color:white" class="m-0 mt-4">Admin Roles</p>
-                            @endif
                             <li class="nav-item">
                                 <a href="{{url('admin/person')}}" class="nav-link {{ request()->routeIs('person.*') ? 'active-nav' : '' }}">
                                     <i class=" nav-icon fa-solid fa-user-check good"></i>
@@ -151,7 +148,6 @@
 
 
 
-                            @if(Auth::user()->positions->position_name == "Manager")
                             <li class="nav-item">
                                 <a href="{{url('admin/unauthorized')}}" class="nav-link {{ request()->routeIs('unauthorized.*')   ? 'active-nav' : '' }}">
                                     <i class=" nav-icon fa-solid fa-user-xmark bad"></i>
@@ -161,7 +157,9 @@
                                 </a>
                             </li>
 
-                            @endif
+
+
+
                             <p style="color:white" class="m-0 mt-4">Logout</p>
                             <li class="nav-item logoutButton">
                                 <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();

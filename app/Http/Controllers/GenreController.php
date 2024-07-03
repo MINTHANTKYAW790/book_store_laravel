@@ -12,6 +12,12 @@ class GenreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct()
+    {
+        $this->middleware(['permission:genre-list|genre-create|genre-edit'], ['only' => ['index', 'store']]);
+        $this->middleware(['permission:genre-create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:genre-edit'], ['only' => ['edit', 'update']]);
+    }
     public function index()
     {
         $genres = Genre::latest()->paginate(10);

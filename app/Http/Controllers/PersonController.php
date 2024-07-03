@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Person;
 use App\Models\Position;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
 
 class PersonController extends Controller
 {
@@ -16,11 +18,21 @@ class PersonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // function __construct()
+    // {
+    //     $this->middleware(['permission:authorized-list|authorized-detail|authorized-create|authorized-edit|authorized-delete'], ['only' => ['index', 'show']]);
+    //     $this->middleware(['permission:authorized-detail'], ['only' => ['show']]);
+    //     $this->middleware(['permission:authorized-create'], ['only' => ['create', 'store']]);
+    //     $this->middleware(['permission:authorized-edit'], ['only' => ['edit', 'update']]);
+    //     $this->middleware(['permission:authorized-delete'], ['only' => ['destroy']]);
+    // }
+
     public function index()
     {
 
         $users = User::orderBy('deleted', 'ASC')->where('deleted', 0)->paginate(10);
-        return view('person.index', compact('users'));
+        $roles = Role::pluck('name', 'name')->all();
+        return view('person.index', compact('users', 'roles'));
     }
 
     /**
@@ -31,22 +43,19 @@ class PersonController extends Controller
     public function create()
     {
         // Check if there is a user with the manager position
-        $managerExists = User::whereHas('positions', function ($query) {
-            $query->where('position_name', 'Manager');
-        })->exists();
+        // $managerExists = User::whereHas('positions', function ($query) {
+        //     $query->where('position_name', 'Manager');
+        // })->exists();
 
-        // Fetch positions excluding 'Manager' if a manager already exists
-        if ($managerExists) {
-            $positions = Position::where('position_name', '!=', 'Manager')->get();
-        } else {
-            $positions = Position::all();
-        }
-
-
-
-
+        // // Fetch positions excluding 'Manager' if a manager already exists
+        // if ($managerExists) {
+        //     $positions = Position::where('position_name', '!=', 'Manager')->get();
+        // } else {
+        //     $positions = Position::all();
+        // }
+        $roles = Role::pluck('name', 'name')->all();
         // $positions = Position::orderBy('position_name', 'ASC')->get();
-        return view('person.create', compact('positions'));
+        return view('person.create', compact('roles'));
     }
 
     /**
@@ -64,7 +73,7 @@ class PersonController extends Controller
             'phone' => 'required|numeric|digits_between:10,15|unique:users,phone',
             'address' => 'required|string|max:255',
             'image' => 'required',
-            'position_id' => 'required',
+            'roles' => 'required',
 
         ]);
 
@@ -72,7 +81,7 @@ class PersonController extends Controller
         $imageFileName = auth()->id() . '_' . time() . '.' . $request->file('image')->extension();
         $request->file('image')->move(public_path('images'), $imageFileName);
 
-        User::create(
+        $user = User::create(
             [
                 'name' => $request->name,
                 'email' => $request->email,
@@ -80,12 +89,14 @@ class PersonController extends Controller
                 'phone' => $request->phone,
                 'address' => $request->address,
                 'image' => $imageFileName,
-                'position_id' => $request->position_id,
+                'role' => $request->role,
+                'position_id' => 1,
                 'deleted' => 0,
                 'active' => 1
             ]
 
         );
+        $user->assignRole($request->input('roles'));
         return redirect('admin/person')->with('successAlert', 'You have successfully created! ' . $request->name);
     }
 
@@ -95,6 +106,7 @@ class PersonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function show($id)
     {
         $users = User::find($id);
@@ -109,9 +121,17 @@ class PersonController extends Controller
      */
     public function edit($id)
     {
-        $positions = Position::orderBy('position_name', 'ASC')->get();
         $users = User::find($id);
-        return view('person.edit', compact('users', 'positions'));
+        $roles = Role::pluck('name', 'name')->all();
+        $userRole = $users->roles->pluck('name', 'name')->all();
+        return view('person.edit', compact('users', 'roles', 'userRole'));
+
+
+
+        // $positions = Position::orderBy('position_name', 'ASC')->get();
+        // $users = User::find($id);
+        // $roles = Role::pluck('name', 'name')->all();
+        // return view('person.edit', compact('users', 'positions', 'roles'));
     }
 
     /**
@@ -136,7 +156,7 @@ class PersonController extends Controller
             'phone' => 'required|numeric|digits_between:10,15',
             'address' => 'required|string|max:255',
 
-            'position_id' => 'required',
+            'roles' => 'required',
 
         ]);
 
@@ -147,15 +167,20 @@ class PersonController extends Controller
             $request->file('image')->move(public_path('images'), $imageFileName);
         }
 
-        User::find($id)->update([
+        $user =  User::find($id)->update([
             'name' => $request->name,
             'email' => $request->email,
             // 'password' => Hash::make($request['password']),
             'phone' => $request->phone,
             'address' => $request->address,
             'image' => $imageFileName,
-            'position_id' => $request->position_id
+
         ]);
+
+
+        DB::table('model_has_roles')->where('model_id', $id)->delete();
+
+        $user->assignRole($request->input('roles'));
         return redirect('admin/person')->with('successAlert', 'You have successfully updated!');
     }
 
