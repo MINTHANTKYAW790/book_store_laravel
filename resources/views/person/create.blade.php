@@ -5,7 +5,7 @@
     {{csrf_field()}}
     <div class="card ">
         <div class="cardbody mt-3 ml-3">
-            {{ var_dump($errors->all()) }}
+            <!-- {{ var_dump($errors->all()) }} -->
             <h3 class="mb-4">Create New Authourized Person</h3>
             <!-- Name -->
             <div class="row mb-3">
@@ -41,7 +41,7 @@
 
                 <div class="col-md-6">
                     <div class="input-group mb-3">
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Enter Password">
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password" placeholder="Enter Password">
                         <div class="input-group-append">
                             <span class="input-group-text " onclick="togglePassword()">
                                 <i id="toggleIcon" class="fa fa-eye"></i> <!-- Added icon here -->
@@ -61,7 +61,7 @@
 
                 <div class="col-md-6">
                     <div class="input-group mb-3">
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
+                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password" placeholder="Confirm Password">
                         <div class="input-group-append">
                             <span class="input-group-text " onclick="togglePassword1()">
                                 <i id="toggleIcon1" class="fa fa-eye"></i> <!-- Added icon here -->
@@ -75,7 +75,7 @@
                 <label for="phone" class="col-md-2 col-form-label offset-md-2">{{ __('Phone') }}</label>
 
                 <div class="col-md-6">
-                    <input id="phone" type="phone" class="form-control @error('phone') is-invalid @enderror" name="phone" required autocomplete="new-phone" placeholder="Enter Phone Number">
+                    <input id="phone" type="phone" class="form-control @error('phone') is-invalid @enderror" name="phone" autocomplete="new-phone" placeholder="Enter Phone Number">
 
                     @error('phone')
                     <span class="invalid-feedback" role="alert">
@@ -89,7 +89,7 @@
                 <label for="address" class="col-md-2 col-form-label offset-md-2">{{ __('Address') }}</label>
 
                 <div class="col-md-6">
-                    <input id="address" type="address" class="form-control @error('address') is-invalid @enderror" name="address" required autocomplete="new-address" placeholder="Enter Address">
+                    <input id="address" type="address" class="form-control @error('address') is-invalid @enderror" name="address" autocomplete="new-address" placeholder="Enter Address">
 
                     @error('address')
                     <span class="invalid-feedback" role="alert">
@@ -103,7 +103,7 @@
                 <label for="image" class="col-md-2 col-form-label offset-md-2">{{ __('Image') }}</label>
 
                 <div class="col-md-6">
-                    <input id="image" type="file" accept="image/*" class="form-control @error('image') is-invalid @enderror" name="image" required autocomplete="new-image">
+                    <input id="image" type="file" accept="image/*" class="form-control @error('image') is-invalid @enderror" name="image" autocomplete="new-image">
 
                     @error('image')
                     <span class="invalid-feedback" role="alert">
@@ -115,7 +115,7 @@
 
             <!-- Role -->
             <div class="row mb-3">
-                <label for="role" class="col-md-2 col-form-label offset-md-2">Position Name</label>
+                <label for="role" class="col-md-2 col-form-label offset-md-2">Role</label>
                 <div class="col-md-6">
                     <select multiple name="roles[]" id="role" class="form-control multiple @error('role') is-invalid @enderror" required>
 
@@ -125,7 +125,7 @@
                         </option>
                         @endforeach
                     </select>
-                    @error('role')
+                    @error('roles')
                     <span class="invalid-feedback">
                         {{ $message }}
                     </span>

@@ -11,7 +11,7 @@
     <div class="card ">
 
         <div class="cardbody mt-3 ml-3">
-            {{ var_dump($errors->all()) }}
+            <!-- {{ var_dump($errors->all()) }} -->
             <h3 class="mb-4">Edit Authourized Person</h3>
             <!-- Name -->
 
@@ -110,13 +110,31 @@
 
 
             <!-- Role -->
-            <div class="row mb-3">
-                <label for="role" class="col-md-2 col-form-label offset-md-2">Position Name</label>
+            <!-- <div class="row mb-3">
+                <label for="role" class="col-md-2 col-form-label offset-md-2">Role</label>
                 <div class="col-md-6">
                     <select multiple name="roles[]" id="role" class="form-control multiple @error('role') is-invalid @enderror">
 
                         @foreach($roles as $role)
                         <option value="{{ $role }}">
+                            {{ $role }}
+                        </option>
+                        @endforeach
+                    </select>
+                    @error('role')
+                    <span class="invalid-feedback">
+                        {{ $message }}
+                    </span>
+                    @enderror
+                </div>
+            </div> -->
+
+            <div class="row mb-3">
+                <label for="role" class="col-md-2 col-form-label offset-md-2">Role</label>
+                <div class="col-md-6">
+                    <select multiple name="roles[]" id="role" class="form-control multiple @error('role') is-invalid @enderror">
+                        @foreach($roles as $role)
+                        <option value="{{ $role }}" {{ in_array($role, $userRole) ? 'selected' : '' }}>
                             {{ $role }}
                         </option>
                         @endforeach

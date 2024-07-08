@@ -45,7 +45,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('admin/positions', PositionController::class)->name('*', 'admin_positions');
 
     // Our resource routes
-    Route::resource('admin/roles', RoleController::class);
+    Route::resource('admin/roles', RoleController::class)->name('*', 'roles');
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
 });

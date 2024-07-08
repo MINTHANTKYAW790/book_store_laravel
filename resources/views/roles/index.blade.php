@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <a href="{{url('admin/roles/create')}}" class="btn btn-primary btn-sm "><i class="fa-solid fa-add"></i> Add Position</a>
+                        <a href="{{url('admin/roles/create')}}" class="btn btn-primary btn-sm "><i class="fa-solid fa-add"></i> Add Roles</a>
                     </ol>
                 </div>
 
@@ -22,7 +22,7 @@
     <p>{{ $message }}</p>
 </div>
 @endif -->
-            {{$i=1}}
+
             <table class="table table-bordered table-hover mb-2">
                 <tr>
                     <th>No</th>
@@ -31,7 +31,7 @@
                 </tr>
                 @foreach ($roles as $key => $role)
                 <tr>
-                    <td>{{ $i}}</td>
+                    <td>{{ $roles->firstItem() + $key }}</td>
                     <td>{{ $role->name }}</td>
                     <td>
                         <form action="{{ route('roles.destroy', $role->id) }}" method="POST">
@@ -53,7 +53,7 @@
                         </form>
                     </td>
                 </tr>
-                {{$i++}}
+
                 @endforeach
             </table>
 

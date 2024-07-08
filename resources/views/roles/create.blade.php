@@ -6,14 +6,13 @@
 
         <div class="card-body">
             <div class="row">
-                <div class="col-lg-12 margin-tb mb-4">
-                    <div class="pull-left">
-                        <h2>Create New Role
-                            <div class="float-end">
-                                <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
-                            </div>
-                        </h2>
-                    </div>
+                <div class="col-sm-6">
+                    <h4>Create Role</h4>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right mr-3">
+                        <a href="{{url('admin/roles/')}}" class="btn btn-primary btn-sm "><i class="fa-solid fa-arrow-left"></i> Back</a>
+                    </ol>
                 </div>
             </div>
 

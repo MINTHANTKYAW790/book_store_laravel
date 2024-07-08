@@ -128,14 +128,14 @@
                             <p style="color:white" class="m-0 mt-4">Admin Roles Functions CRUD</p>
 
                             <li class="nav-item">
-                                <a href="{{url('admin/roles')}}" class="nav-link {{ request()->routeIs('unauthorized.*')   ? 'active-nav' : '' }}">
+                                <a href="{{url('admin/roles')}}" class="nav-link {{ request()->routeIs('roles.*')   ? 'active-nav' : '' }}">
                                     <i class=" nav-icon fa-solid fa-users good"></i>
                                     <p>
                                         Manage Roles <!-- <span class="right badge badge-danger">New</span> -->
                                     </p>
                                 </a>
                             </li>
-                            <p style="color:white" class="m-0 mt-4">Admin Roles</p>
+
                             <li class="nav-item">
                                 <a href="{{url('admin/person')}}" class="nav-link {{ request()->routeIs('person.*') ? 'active-nav' : '' }}">
                                     <i class=" nav-icon fa-solid fa-user-check good"></i>
