@@ -18,14 +18,14 @@ class BookController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    function __construct()
-    {
-        $this->middleware(['permission:book-list|book-detail|book-create|book-edit|book-delete'], ['only' => ['index', 'show']]);
-        $this->middleware(['permission:book-detail'], ['only' => ['show']]);
-        $this->middleware(['permission:book-create'], ['only' => ['create', 'store']]);
-        $this->middleware(['permission:book-edit'], ['only' => ['edit', 'update']]);
-        $this->middleware(['permission:book-delete'], ['only' => ['destroy']]);
-    }
+    // function __construct()
+    // {
+    //     $this->middleware(['permission:book-list|book-detail|book-create|book-edit|book-delete'], ['only' => ['index', 'show']]);
+    //     $this->middleware(['permission:book-detail'], ['only' => ['show']]);
+    //     $this->middleware(['permission:book-create'], ['only' => ['create', 'store']]);
+    //     $this->middleware(['permission:book-edit'], ['only' => ['edit', 'update']]);
+    //     $this->middleware(['permission:book-delete'], ['only' => ['destroy']]);
+    // }
 
     public function index()
 

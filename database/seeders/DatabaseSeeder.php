@@ -12,57 +12,55 @@ use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
-
-
     /**
      * List of applications to add.
      */
-    // private $permissions = [
-    //     //Books
-    //     'book-list',
-    //     'book-detail',
-    //     'book-create',
-    //     'book-edit',
-    //     'book-delete',
+    public $permissions = [
+        //Books
+        'book-list',
+        'book-detail',
+        'book-create',
+        'book-edit',
+        'book-delete',
 
-    //     //Authors
-    //     'author-list',
-    //     'author-create',
-    //     'author-edit',
+        //Authors
+        'author-list',
+        'author-create',
+        'author-edit',
 
-    //     //Genres
-    //     'genre-list',
-    //     'genre-create',
-    //     'genre-edit',
+        //Genres
+        'genre-list',
+        'genre-create',
+        'genre-edit',
 
-    //     //Publishing Houses
-    //     'publishing-house-list',
-    //     'publishing-house-create',
-    //     'publishing-house-edit',
+        //Publishing Houses
+        'publishing-house-list',
+        'publishing-house-create',
+        'publishing-house-edit',
 
-    //     //Backup
-    //     'backup-list',
-    //     'backup-detail',
-    //     'backup-restore',
+        //Backup
+        'backup-list',
+        'backup-detail',
+        'backup-restore',
 
-    //     //Role
-    //     'role-list',
-    //     'role-create',
-    //     'role-edit',
-    //     'role-delete',
+        //Role
+        'role-list',
+        'role-create',
+        'role-edit',
+        'role-delete',
 
-    //     //Authorized
-    //     'authorized-list',
-    //     'authorized-detail',
-    //     'authorized-create',
-    //     'authorized-edit',
-    //     'authorized-delete',
+        //Authorized
+        'authorized-list',
+        'authorized-detail',
+        'authorized-create',
+        'authorized-edit',
+        'authorized-delete',
 
-    //     //Unauthorized
-    //     'unauthorized-list',
-    //     'unauthorized-detail',
-    //     'unauthorized-restore'
-    // ];
+        //Unauthorized
+        'unauthorized-list',
+        'unauthorized-detail',
+        'unauthorized-restore'
+    ];
     /**
      * Seed the application's database.
      *
@@ -72,16 +70,12 @@ class DatabaseSeeder extends Seeder
     {
 
         // Books::factory()->count(20)->create();
-        // \App\Models\User::factory(10)->create();
+        // User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
-        // foreach ($this->permissions as $permission) {
-        //     Permission::create(['name' => $permission]);
-        // }
+        
+        foreach ($this->permissions as $permission) {
+            Permission::create(['name' => $permission]);
+        }
 
         // Create admin User and assign the role to him.
         $user = User::create([
@@ -90,9 +84,6 @@ class DatabaseSeeder extends Seeder
             'phone' => '09961666503',
             'address' => 'Nay Pyi Taw',
             'image' => 'user.jpg',
-
-
-
             'password' => Hash::make('password')
         ]);
 

@@ -12,12 +12,12 @@ class PublishingHouseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    function __construct()
-    {
-        $this->middleware(['permission:publishing-house-list|publishing-house-create|publishing-house-edit'], ['only' => ['index', 'store']]);
-        $this->middleware(['permission:publishing-house-create'], ['only' => ['create', 'store']]);
-        $this->middleware(['permission:publishing-house-edit'], ['only' => ['edit', 'update']]);
-    }
+    // function __construct()
+    // {
+    //     $this->middleware(['permission:publishing-house-list|publishing-house-create|publishing-house-edit'], ['only' => ['index', 'store']]);
+    //     $this->middleware(['permission:publishing-house-create'], ['only' => ['create', 'store']]);
+    //     $this->middleware(['permission:publishing-house-edit'], ['only' => ['edit', 'update']]);
+    // }
     public function index()
     {
         $publishinghouses = PublishingHouse::latest()->paginate(10);

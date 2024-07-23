@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Books extends Model
 {
+
+    use HasFactory;
     protected $fillable = ['code_number', 'name', 'price', 'publishing_date', 'description', 'image', 'save_pdf', 'deleted', 'author_id', 'genre_id', 'publishing_house_id', 'inserted_by', 'edition'];
 
 

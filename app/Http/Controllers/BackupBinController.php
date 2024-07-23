@@ -55,12 +55,12 @@ class BackupBinController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    function __construct()
-    {
-        $this->middleware(['permission:backup-list|backup-create|backup-edit'], ['only' => ['index', 'store']]);
-        $this->middleware(['permission:backup-create'], ['only' => ['create', 'store']]);
-        $this->middleware(['permission:backup-edit'], ['only' => ['edit', 'update']]);
-    }
+    // function __construct()
+    // {
+    //     $this->middleware(['permission:backup-list|backup-create|backup-edit'], ['only' => ['index', 'store']]);
+    //     $this->middleware(['permission:backup-create'], ['only' => ['create', 'store']]);
+    //     $this->middleware(['permission:backup-edit'], ['only' => ['edit', 'update']]);
+    // }
     public function show($id)
     {
         // $authors = Author::all();
