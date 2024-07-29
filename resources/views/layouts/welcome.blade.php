@@ -9,7 +9,8 @@
     <link rel="icon" type="image/x-icon" href="{{asset('images/wordwiseCircle.png')}}">
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;700&display=swap"> -->
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/ff5868ab46.js" crossorigin="anonymous"></script>
     <!-- Theme style -->

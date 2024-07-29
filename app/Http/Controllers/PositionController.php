@@ -12,13 +12,13 @@ class PositionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // function __construct()
-    // {
-    //     $this->middleware(['permission:position-list|position-create|position-edit|position-delete'], ['only' => ['index', 'store']]);
-    //     $this->middleware(['permission:position-create'], ['only' => ['create', 'store']]);
-    //     $this->middleware(['permission:position-edit'], ['only' => ['edit', 'update']]);
-    //     $this->middleware(['permission:position-delete'], ['only' => ['destroy']]);
-    // }
+    function __construct()
+    {
+        $this->middleware(['permission:position-list|position-create|position-edit|position-delete'], ['only' => ['index', 'store']]);
+        $this->middleware(['permission:position-create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:position-edit'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:position-delete'], ['only' => ['destroy']]);
+    }
     public function index()
     {
         $positions = Position::latest()->paginate(10);
