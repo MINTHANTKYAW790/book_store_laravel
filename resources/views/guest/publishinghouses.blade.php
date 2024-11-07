@@ -9,7 +9,7 @@
 
 
     <?php foreach ($publishinghouses as $publishinghouse) : ?>
-        <a href='{{url('guest/pbhbooks/'.$publishinghouse->id)}}' class='card namecard' style='width: 24rem; height:4rem;'>
+        <a href='{{url('guest/pbhbooks/'.$publishinghouse->id)}}' class='card namecard' style='width: 22.5rem; height:4rem;'>
             <div class='card-body'>
                 <h5 style='hover{color:white}' class='card-title'>{{$publishinghouse->name}}</h5>
             </div>

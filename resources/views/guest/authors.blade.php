@@ -9,13 +9,11 @@
   @else
   @foreach ($authors as $author)
 
-  <a href='{{url('guest/authorbooks/'.$author->id)}}' class='card namecard' style='width: 13.7rem;'>
+  <a href='{{url('guest/authorbooks/'.$author->id)}}' class='card namecard' style='width: 12.9rem;'>
     <img src='{{asset('images/user.jpg')}}' class='mt-3' height='200px' alt='author image' style="border-radius:10px">
     <div class='card-body'>
       <h5 style='hover{color:white}' class='card-title'>{{$author -> author_name}}</h5>
     </div>
-
-
   </a>
   @endforeach
   @endif

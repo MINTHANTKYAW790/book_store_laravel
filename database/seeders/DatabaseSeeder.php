@@ -72,7 +72,7 @@ class DatabaseSeeder extends Seeder
         // Books::factory()->count(20)->create();
         // User::factory(10)->create();
 
-        
+
         foreach ($this->permissions as $permission) {
             Permission::create(['name' => $permission]);
         }
@@ -80,7 +80,7 @@ class DatabaseSeeder extends Seeder
         // Create admin User and assign the role to him.
         $user = User::create([
             'name' => 'MintThantKyaw',
-            'email' => 'minthantkyaw7907@gmail.com',
+            'email' => 'minthantkyaw79071@gmail.com',
             'phone' => '09961666503',
             'address' => 'Nay Pyi Taw',
             'image' => 'user.jpg',

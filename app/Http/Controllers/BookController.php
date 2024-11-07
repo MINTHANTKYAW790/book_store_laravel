@@ -190,8 +190,8 @@ class BookController extends Controller
 
         Books::find($id)->update([
             'name' => $request->name,
-            'code_number' => $request->code_number,
-            'price' => $request->price,
+            'code_number' => 100,
+            'price' => 100,
             'publishing_date' => $request->publishing_date,
             'description' => $request->description,
             'image' => $imageFileName,

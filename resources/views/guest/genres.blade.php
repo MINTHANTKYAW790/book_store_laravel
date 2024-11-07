@@ -10,7 +10,7 @@
 
 
     @foreach ($genres as $genre)
-    <a href='{{url('guest/genrebooks/'.$genre->id)}}' class='card namecard' style='width: 24rem; height:4rem;'>
+    <a href='{{url('guest/genrebooks/'.$genre->id)}}' class='card namecard' style='width: 22.5rem; height:4rem;'>
         <div class='card-body'>
             <h5 style='hover{color:white}' class='card-title'>{{$genre->genre_name}}</h5>
         </div>
